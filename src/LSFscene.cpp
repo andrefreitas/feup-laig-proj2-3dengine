@@ -18,7 +18,7 @@ CGFappearance *mat1;
 LSFscene::LSFscene(){}
 
 LSFscene::LSFscene(char* argv[]){
-	if(argv[1] == NULL) inputScene=(char*)"default.lsf";
+	if(argv[1] == NULL) inputScene=(char*)"../lsf/default.lsf";
 	else inputScene = argv[1];
 }
 
