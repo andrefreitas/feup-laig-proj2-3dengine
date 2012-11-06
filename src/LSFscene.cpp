@@ -64,8 +64,13 @@ void LSFscene::init()
 	if(lights_enabled) glEnable(GL_LIGHTING);
 	if(lights_doublesided) glLightModelf(GL_LIGHT_MODEL_TWO_SIDE, GL_TRUE);
 	if(lights_local) glLightModelf(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
+
 	// Get the nodes
 	sceneParser->getNodes(nodes,rootNode);
+	stack<LSFappearance*> appearancesStack;
+	appearancesStack.push(defaultAppearance);
+	sceneParser->buildDisplayLists(nodes,rootNode,appearances,appearancesStack,0);
+
 	// Get the cameras info
 	sceneParser->getCameras(cameras);
 

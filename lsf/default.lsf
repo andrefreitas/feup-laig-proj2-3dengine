@@ -511,7 +511,7 @@
 			</children>
 		</node>
 		
-		<node id="WrestlingRing">
+		<node id="WrestlingRing" displaylist="0">
 			<transforms>
 				<translate x="10.1" y="0.0" z="10.1" />
 			</transforms>
@@ -531,7 +531,7 @@
 			</children>
 		</node>
 		
-		<node id="Stands">
+		<node id="Stands" displaylist="1">
 			<transforms>
 				<translate x="-5" y="0" z="0" />
 			</transforms>
@@ -830,7 +830,7 @@
 			</children>
 		</node>
 		
-		<node id="Doors">
+		<node id="Doors" displaylist="1">
 			<transforms>
 			</transforms>
 			

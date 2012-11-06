@@ -101,7 +101,8 @@ class LSFnode{
 		string appearance; // Reference to the map of appearances
 		vector<Primitive> childPrimitives; // All the basic primitives
 		vector<string> childNoderefs; // All the child nodes
-
+		bool isDisplayList;
+		int displayList;
 };
 /**
  * LSFappearance is a class that defines and appearance

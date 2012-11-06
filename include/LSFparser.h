@@ -12,7 +12,7 @@
 #include "CGFcamera.h"
 #include "LSFobjects.h"
 #include "CGFlight.h"
-
+#include <stack>
 using namespace std;
 /**
  * globalsData is a struct that holds the globals configuration variables.
@@ -44,5 +44,6 @@ class LSFparser{
 		void getNodes(map<string,LSFnode*> &nodes,string &rootNode);
 		void getAppearances(map<string,LSFappearance*> &appearances);
 		void getLights(map<string,LSFlight*> &lights, bool &enabled, bool &local, bool &doublesided,float *ambient);
+		void buildDisplayLists(map<string,LSFnode*> &nodes,string &rootNode,map<string,LSFappearance*> appearances,stack<LSFappearance*> &appearancesStack, bool enabledDisplayList);
 };
 #endif

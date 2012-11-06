@@ -8,6 +8,15 @@ void LSFrender::render(map<string,LSFnode*> &nodes,string &rootNode,map<string,L
 		//cout << "\nNo inexistente\n";
 		return;
 	}
+
+	// If is display list
+	if(nodes[rootNode]->isDisplayList){
+		glCallList(nodes[rootNode]->displayList);
+		//cout << "\n É Display List!" << rootNode << endl;
+		return;
+	}
+
+	//cout << "\n Não era Display List!" << endl;
 	// Transforms
 	glPushMatrix();
 	glMultMatrixf(nodes[rootNode]->transformMatrix);
