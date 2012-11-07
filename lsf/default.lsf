@@ -511,7 +511,7 @@
 			</children>
 		</node>
 		
-		<node id="WrestlingRing" displaylist="0">
+		<node id="WrestlingRing" displaylist="1">
 			<transforms>
 				<translate x="10.1" y="0.0" z="10.1" />
 			</transforms>

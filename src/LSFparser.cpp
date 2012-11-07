@@ -1023,15 +1023,19 @@ void LSFparser::getLights(map<string, LSFlight*>&lights, bool &enabled,
 		node = node->NextSiblingElement();
 	}
 }
+void LSFparser::buildDisplayLists(map<string,LSFnode*> &nodes,string &rootNode,map<string,LSFappearance*> appearances,stack<LSFappearance*> &appearancesStack, bool enabledDisplayList){
 
-void LSFparser::buildDisplayLists(map<string, LSFnode*> &nodes,
-		string &rootNode, map<string, LSFappearance*> appearances,
-		stack<LSFappearance*> &appearancesStack,bool enabledDisplayList) {
+		// WARNING: first create childs display lists
+		for (int unsigned i = 0; i < nodes[rootNode]->childNoderefs.size(); i++){
+			buildDisplayLists(nodes, nodes[rootNode]->childNoderefs[i], appearances,appearancesStack,1);
+		}
 
-	// Init Display List
-	if (nodes[rootNode]->isDisplayList) {
-		nodes[rootNode]->displayList=glGenLists(1);
-		glNewList(nodes[rootNode]->displayList, GL_COMPILE);
+		// If is display list
+		if(nodes[rootNode]->isDisplayList & enabledDisplayList){
+			nodes[rootNode]->displayList=glGenLists(1);
+			glNewList(nodes[rootNode]->displayList, GL_COMPILE);
+			cout << "Criou a displaylist de: " << rootNode << endl;
+		}
 
 		// Transforms
 		glPushMatrix();
@@ -1044,11 +1048,8 @@ void LSFparser::buildDisplayLists(map<string, LSFnode*> &nodes,
 		else
 			currentAppearance = appearances[nodes[rootNode]->appearance];
 		appearancesStack.push(currentAppearance);
-		glMaterialfv(GL_EMISSION, GL_FRONT_AND_BACK,
-				currentAppearance->emissive);
+		glMaterialfv(GL_EMISSION, GL_FRONT_AND_BACK, currentAppearance->emissive);
 		currentAppearance->appearance->apply();
-		// Emissive
-		// Compute UV coords by ST length
 
 		// Process the primitives
 		for (int unsigned i = 0; i < nodes[rootNode]->childPrimitives.size(); i++) {
@@ -1056,70 +1057,23 @@ void LSFparser::buildDisplayLists(map<string, LSFnode*> &nodes,
 			primitive.draw(nodes[rootNode]->childPrimitives[i], currentAppearance);
 		}
 
-		glPopMatrix();
-		glEndList();
-	}
-
-}
-
-void LSFparser::buildParentDisplayLists(map<string, LSFnode*> &nodes,
-		string &rootNode, map<string, LSFappearance*> appearances,
-		stack<LSFappearance*> &appearancesStack,bool enabledDisplayList) {
-	if (nodes[rootNode] == 0)
-		return;
-
-	vector<int> displayListsIndex;
-
-	// Init Display List
-	if (nodes[rootNode]->isDisplayList) {
-		for(unsigned int i = 0; i < nodes[rootNode]->childNoderefs.size(); i++){
-			if(nodes[rootNode]->isDisplayList)
-				displayListsIndex.push_back(nodes[rootNode]->displayList);
-		}
-		if(!displayListsIndex.empty()){
-			glDeleteLists(nodes[rootNode]->displayList, 1);
-			glNewList(nodes[rootNode]->displayList, GL_COMPILE);
-		}
-		else
-			return;
-	}
-			// Transforms
-			glPushMatrix();
-			glMultMatrixf(nodes[rootNode]->transformMatrix);
-
-			// Appearances
-			LSFappearance *currentAppearance;
-			if (nodes[rootNode]->appearance == "inherit")
-				currentAppearance = appearancesStack.top();
+		// Process the childs nodes
+		for (int unsigned i = 0; i < nodes[rootNode]->childNoderefs.size(); i++){
+			LSFnode *childNode=nodes[nodes[rootNode]->childNoderefs[i]];
+			if(childNode->isDisplayList){
+				glPushMatrix();
+				glCallList(childNode->displayList);
+				glPopMatrix();
+			}
 			else
-				currentAppearance = appearances[nodes[rootNode]->appearance];
-			appearancesStack.push(currentAppearance);
-			glMaterialfv(GL_EMISSION, GL_FRONT_AND_BACK,
-					currentAppearance->emissive);
-			currentAppearance->appearance->apply();
-			// Emissive
-			// Compute UV coords by ST length
-
-			// Process the primitives
-			for (int unsigned i = 0; i < nodes[rootNode]->childPrimitives.size();i++) {
-				LSFprimitive primitive;
-				primitive.draw(nodes[rootNode]->childPrimitives[i], currentAppearance);
-			}
-
-
-			// If is a display list, need to say to the childs
-
-		for (int unsigned i = 0; i < nodes[rootNode]->childNoderefs.size(); i++) {
-			if(nodes[rootNode]->isDisplayList){
-				buildParentDisplayLists(nodes,nodes[rootNode]->childNoderefs[i],appearances,appearancesStack,nodes[rootNode]->isDisplayList);
-				cout << "displayListsIndex[" << i << "] = " << displayListsIndex[i] << endl;
-				glCallList(displayListsIndex[i]);
-			}
+				buildDisplayLists(nodes, nodes[rootNode]->childNoderefs[i], appearances,appearancesStack,0);
 		}
 
 		appearancesStack.pop();
 		glPopMatrix();
 
-		glEndList();
-
+		// If is display list
+		if(nodes[rootNode]->isDisplayList & enabledDisplayList){
+			glEndList();
+		}
 }
