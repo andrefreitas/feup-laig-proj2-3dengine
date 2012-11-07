@@ -556,6 +556,16 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 					cout << "\t\tnoderef " << st << endl;
 
 			}
+			else if (strcmp(childVal, "plane") == 0) {
+				existingValidChilds++;
+				Primitive prim(plane);
+				int parts;
+
+				queryResult |= child->QueryIntAttribute("parts", &parts);
+				prim.attr["parts"]=parts;
+				cout << "Plane with parts: " << parts << endl;
+
+			}
 
 			// -->
 			child = child->NextSiblingElement();
@@ -1066,9 +1076,7 @@ void LSFparser::buildDisplayLists(map<string,LSFnode*> &nodes,string &rootNode,m
 		for (int unsigned i = 0; i < nodes[rootNode]->childNoderefs.size(); i++){
 			LSFnode *childNode=nodes[nodes[rootNode]->childNoderefs[i]];
 			if(childNode->isDisplayList){
-				glPushMatrix();
 				glCallList(childNode->displayList);
-				glPopMatrix();
 			}
 			else
 				buildDisplayLists(nodes, nodes[rootNode]->childNoderefs[i], appearances,appearancesStack,0);

@@ -12,4 +12,5 @@
 			<provider-reference id="org.eclipse.cdt.managedbuilder.core.MBSLanguageSettingsProvider" ref="shared-provider"/>
 		</extension>
 	</configuration>
+	<configuration id="cdt.managedbuild.config.gnu.mingw.exe.debug.70697508" name="makeWindows"/>
 </project>

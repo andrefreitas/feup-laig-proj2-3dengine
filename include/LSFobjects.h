@@ -20,7 +20,7 @@
  * Primitive: a class for holding all existing primitives
  * OOP is not necessary because we have a map that is for the attributes
  */
-enum PrimitiveType{ rectangle,triangle,cylinder,sphere,torus};
+enum PrimitiveType{ rectangle,triangle,cylinder,sphere,torus,plane};
 class Primitive{
 	public:
 		PrimitiveType type;
