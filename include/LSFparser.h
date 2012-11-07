@@ -45,5 +45,6 @@ class LSFparser{
 		void getAppearances(map<string,LSFappearance*> &appearances);
 		void getLights(map<string,LSFlight*> &lights, bool &enabled, bool &local, bool &doublesided,float *ambient);
 		void buildDisplayLists(map<string,LSFnode*> &nodes,string &rootNode,map<string,LSFappearance*> appearances,stack<LSFappearance*> &appearancesStack, bool enabledDisplayList);
+		void buildParentDisplayLists(map<string,LSFnode*> &nodes,string &rootNode,map<string,LSFappearance*> appearances,stack<LSFappearance*> &appearancesStack,bool enabledDisplayList);
 };
 #endif

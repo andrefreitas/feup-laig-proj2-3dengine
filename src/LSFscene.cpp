@@ -70,6 +70,7 @@ void LSFscene::init()
 	stack<LSFappearance*> appearancesStack;
 	appearancesStack.push(defaultAppearance);
 	sceneParser->buildDisplayLists(nodes,rootNode,appearances,appearancesStack,0);
+	sceneParser->buildParentDisplayLists(nodes,rootNode,appearances,appearancesStack,1);
 
 	// Get the cameras info
 	sceneParser->getCameras(cameras);
