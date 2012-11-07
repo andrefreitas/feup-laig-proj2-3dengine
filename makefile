@@ -4,7 +4,7 @@ SRC = $(wildcard src/*.cpp)
 
 OBJ = $(patsubst src%, ../buildtemp%.o, $(SRC))
 
-OUT = bin/CGFexample
+OUT = bin/LSFscene
 
 # include directories
 INCLUDES = -I. -I./include/  -I./include/CGF -I/usr/local/include -I./include/TinyXML
@@ -39,4 +39,3 @@ clean:
 test:
 	echo $(SRC)
 	echo $(OBJ)
-
