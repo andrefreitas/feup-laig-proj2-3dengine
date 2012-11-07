@@ -548,7 +548,7 @@
 		</node>
 		
 		
-		<node id="StandsGroup1">
+		<node id="StandsGroup1" displaylist="1">
 			<transforms>
 			<translate x="0" y="0" z="8" />
 			</transforms>

@@ -1026,9 +1026,14 @@ void LSFparser::getLights(map<string, LSFlight*>&lights, bool &enabled,
 void LSFparser::buildDisplayLists(map<string,LSFnode*> &nodes,string &rootNode,map<string,LSFappearance*> appearances,stack<LSFappearance*> &appearancesStack, bool enabledDisplayList){
 
 		// WARNING: first create childs display lists
+		// WARNING2: push matrix and parent matrix is necessary
+		glPushMatrix();
+		glMultMatrixf(nodes[rootNode]->transformMatrix);
+
 		for (int unsigned i = 0; i < nodes[rootNode]->childNoderefs.size(); i++){
 			buildDisplayLists(nodes, nodes[rootNode]->childNoderefs[i], appearances,appearancesStack,1);
 		}
+		glPopMatrix();
 
 		// If is display list
 		if(nodes[rootNode]->isDisplayList & enabledDisplayList){
