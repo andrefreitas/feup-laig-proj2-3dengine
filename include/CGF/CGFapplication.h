@@ -35,6 +35,8 @@ class CGFapplication
 
 		static long getTime();			///< Returns the current time in milliseconds to be used in time-based updates and other actions. The time base may vary from platform to platform, can be from a specifica date, or from the start of the application.
 
+		void forceRefresh();			///< Forces the application to refresh, including updating the viewports and corresponding projection matrices
+
 	protected:
 		void activate();
 

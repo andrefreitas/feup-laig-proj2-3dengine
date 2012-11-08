@@ -15,7 +15,7 @@ class CGFobject
 {
 	public:
 		CGFobject();		///< Base contructor
-		~CGFobject();		///< Base destructor
+		virtual ~CGFobject();		///< Base destructor
 
 		virtual void draw(); ///< Virtual function that every object should have implemented
 };

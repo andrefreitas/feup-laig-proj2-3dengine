@@ -23,7 +23,7 @@ class CGFscene
 	friend class CGFinterface;
 	public:
 		CGFscene();
-		~CGFscene();
+		virtual ~CGFscene();
 
 
 		virtual void init();					///< Initializes the scene. It is called by CGFapplication when the scene is associated through CGFapplication::setScene()
