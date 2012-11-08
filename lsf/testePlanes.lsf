@@ -64,7 +64,13 @@
 			<appearanceref id="inherit" />
 				 
 			<children>
-				<plane parts="5" />
+				<!-- plane parts="5" / -->
+				<patch order="1" partsU="5" partsV="5" compute="fill">
+            		<controlpoint x="-0.5" y="0.0" z="0.5" />
+            		<controlpoint x="-0.5" y="0.0" z="-0.5" />
+            		<controlpoint x="0.5" y="0.0" z="0.5" />
+            		<controlpoint x="0.5" y="0.0" z="-0.5" />
+    			</patch>
 			</children>
 		</node>
 			
