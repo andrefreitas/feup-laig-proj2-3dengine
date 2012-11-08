@@ -621,6 +621,8 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 				if (existingControlpoints != (order+1)*(order+1))
 					exit_("Exists " + (string) buff + " invalid controlpoint(s) at node "
 									+ (string) pnode->id + ".");
+
+				pnode->childPrimitives.push_back(prim);
 			}
 
 			// -->
