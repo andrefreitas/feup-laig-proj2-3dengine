@@ -566,6 +566,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 
 				prim.attr["parts"]=parts;
 				cout << "Plane with parts: " << parts << endl;
+				pnode->childPrimitives.push_back(prim);
 
 			}
 			else if (strcmp(childVal, "patch") == 0) {

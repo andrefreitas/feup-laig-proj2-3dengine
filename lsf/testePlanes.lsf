@@ -24,7 +24,7 @@
 	
 	
 	<!-- general lighting -->
-	<lighting doublesided="true" local="true" enabled="true" >
+	<lighting doublesided="true" local="false" enabled="true" >
 		<!-- scene ambient light -->
 		<ambient r="0.03" g="0.03" b="0.03" a="1.0" />
 		
@@ -52,7 +52,7 @@
 			<shininess value="0.3" />
 			<texture file="wall.jpg" length_s="4" length_t="4" />
 		</appearance>
-	</appearances>
+	</appearances> 
 	
 	<!-- graph information -->
 	<graph rootid="Plano">
@@ -65,12 +65,6 @@
 				 
 			<children>
 				<plane parts="5" />
-				<patch order="1" partsU="10" partsV="10" compute="fill">
-            		<controlpoint x="0.0" y="0.0" z="0.0" />
-            		<controlpoint x="0.0" y="2.0" z="3.0" />
-            		<controlpoint x="4.0" y="4.0" z="6.0" />
-            		<controlpoint x="4.0" y="6.0" z="6.0" />
-    			</patch>
 			</children>
 		</node>
 			
