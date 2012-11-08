@@ -72,10 +72,23 @@ void LSFprimitive::draw(Primitive primitive, LSFappearance *currentAppearance){
 								{-0.5, 0, -0.5},
 								{ 0.5, 0, 0.5}, 
 								{ 0.5, 0, -0.5}};
-			glColor3f(1.0,1.0,1.0);
+
+			GLfloat textpoints[4][2] = {	{ 0.0, 0.0},
+											{ 0.0, 1.0},
+											{ 1.0, 0.0},
+											{ 1.0, 1.0} };
+
+			glEnable(GL_AUTO_NORMAL);
 			glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 2,  0.0, 1.0, 6, 2,  &ctrlpoints[0][0]);
+			glMap2f(GL_MAP2_TEXTURE_COORD_2,  0.0, 1.0, 2, 2,  0.0, 1.0, 4, 2,  &textpoints[0][0]);
+
+			// Interpolators
 			glEnable(GL_MAP2_VERTEX_3);
+			glEnable(GL_MAP2_TEXTURE_COORD_2);
+
 			glMapGrid2f(primitive.attr["parts"], 0.0,1, primitive.attr["parts"], 0.0,1); 
+
+
 			glEvalMesh2(GL_FILL, 0,primitive.attr["parts"], 0,primitive.attr["parts"]);
 
 		}break;
