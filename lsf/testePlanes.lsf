@@ -52,7 +52,7 @@
 			<shininess value="0.3" />
 			<texture file="wall.jpg" length_s="4" length_t="4" />
 		</appearance>
-	</appearances>
+	</appearances> 
 	
 	<!-- graph information -->
 	<graph rootid="Plano">
@@ -64,7 +64,7 @@
 			<appearanceref id="inherit" />
 				 
 			<children>
-				<plane parts="100" />
+				<plane parts="5" />
 			</children>
 		</node>
 			
