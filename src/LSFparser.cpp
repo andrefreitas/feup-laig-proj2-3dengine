@@ -564,6 +564,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 				queryResult |= child->QueryIntAttribute("parts", &parts);
 				prim.attr["parts"]=parts;
 				cout << "Plane with parts: " << parts << endl;
+				pnode->childPrimitives.push_back(prim);
 
 			}
 

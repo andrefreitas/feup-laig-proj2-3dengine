@@ -24,7 +24,7 @@
 	
 	
 	<!-- general lighting -->
-	<lighting doublesided="true" local="true" enabled="true" >
+	<lighting doublesided="true" local="false" enabled="true" >
 		<!-- scene ambient light -->
 		<ambient r="0.03" g="0.03" b="0.03" a="1.0" />
 		
@@ -64,7 +64,7 @@
 			<appearanceref id="inherit" />
 				 
 			<children>
-				<plane parts="5" />
+				<plane parts="100" />
 			</children>
 		</node>
 			

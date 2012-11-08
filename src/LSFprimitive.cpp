@@ -1,6 +1,7 @@
 #include "CGFapplication.h"
 #include "LSFprimitive.h"
-
+#include <iostream>
+using namespace std;
 LSFprimitive::LSFprimitive() {
 
 }
@@ -62,6 +63,20 @@ void LSFprimitive::draw(Primitive primitive, LSFappearance *currentAppearance){
 
 			glutSolidTorus(primitive.attr["inner"],primitive.attr["outer"],primitive.attr["slices"],primitive.attr["loops"]);
 		} break;
+
+		case plane:{
+			GLfloat ctrlpoints[4][3] = {
+								{ -0.5, 0, 0.5},
+								{-0.5, 0, -0.5},
+								{ 0.5, 0, 0.5}, 
+								{ 0.5, 0, -0.5}};
+			glColor3f(1.0,1.0,1.0);
+			glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 2,  0.0, 1.0, 6, 2,  &ctrlpoints[0][0]);
+			glEnable(GL_MAP2_VERTEX_3);
+			glMapGrid2f(primitive.attr["parts"], 0.0,1, primitive.attr["parts"], 0.0,1); 
+			glEvalMesh2(GL_FILL, 0,primitive.attr["parts"], 0,primitive.attr["parts"]);
+
+		}break;
 	}
 }
 
