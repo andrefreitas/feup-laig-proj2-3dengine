@@ -17,7 +17,7 @@ class CGFlight: public CGFobject
 {
 	public:
 		CGFlight(unsigned int lightid, float* pos, float *dir=NULL);	///< Constructor. Receives an OpenGL light id GL_LIGHT_n, a position in 4-float vector and an optional direction, both as defined in OpenGL's *glLightfv()* documentation.
-		~CGFlight();		///< Base destructor
+		virtual ~CGFlight();		///< Base destructor
 
 		void draw();		///< Draws a visible representation of the light (a sphere). It forces an update() of the light.
 		void update();		///< Updates the position and direction of the corresponding OpenGL's light. Has to be called after any camera transformations, so that the light is transformed in the proper referential.

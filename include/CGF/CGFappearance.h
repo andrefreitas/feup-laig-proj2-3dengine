@@ -22,7 +22,7 @@ class CGFappearance
 		CGFappearance(string, int, int);				///< Constructor for initializing with a texture (filename) and wrapping style in s and t directions
 
 
-		~CGFappearance();
+		virtual ~CGFappearance();
 
 		void apply();									///< Applies the material (makes it active for whatever is rendered next)
 

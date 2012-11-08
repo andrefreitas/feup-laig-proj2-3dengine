@@ -827,7 +827,7 @@ void LSFparser::getAppearances(map<string, LSFappearance*> &appearances) {
 			string t = "../textures/";
 			t.append(texture->Attribute("file"));
 			CGFtexture *text = new CGFtexture(t);
-			text->setSize(texture_length_s, texture_length_t);
+			//text->setSize(texture_length_s, texture_length_t);
 			pappearance->setTexture(text);
 			pappearance->setTextureWrap(GL_REPEAT, GL_REPEAT);
 			if (DEBUGMODE)

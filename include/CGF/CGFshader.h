@@ -13,14 +13,14 @@ class CGFshader
 public:
 	CGFshader(void);										///< Base constructor
     CGFshader(const char *vsFile, const char *fsFile);		///< Main constructor. Loads and validates the vertex and fragment shaders specified by _vsFile_ and _fsFile_, using init().
-	~CGFshader(void);										///< Base destructor
+	virtual ~CGFshader(void);										///< Base destructor
 
-    void init(const char *vsFile, const char *fsFile);		///< Loads and validates the vertex and fragment shaders specified by _vsFile_ and _fsFile_, using init().
+    virtual void init(const char *vsFile, const char *fsFile);		///< Loads and validates the vertex and fragment shaders specified by _vsFile_ and _fsFile_, using init().
     
-	void update();											///< Updates the shader parameters (uniforms). In this base implementation, it updates the _time_ uniform (if it exists) with CGFapplication::getTime().
-	void update(float time);								///< Updates the _time_ uniform (if it exists) with the value _time_.
-	void bind();											///< Binds (activates) the shader.
-	void unbind();											///< Unbinds (deactivates) the shader, and reactivates the fixed-function pipeline
+	virtual void update();											///< Updates the shader parameters (uniforms). In this base implementation, it updates the _time_ uniform (if it exists) with CGFapplication::getTime().
+	virtual void update(float time);								///< Updates the _time_ uniform (if it exists) with the value _time_.
+	virtual void bind();											///< Binds (activates) the shader.
+	virtual void unbind();											///< Unbinds (deactivates) the shader, and reactivates the fixed-function pipeline
 	
 	unsigned int id();										///< Returns the shader id
 	

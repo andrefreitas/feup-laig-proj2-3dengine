@@ -16,7 +16,7 @@ class CGFcamera
 {
 	public:
 		CGFcamera();		///< Base constructor
-		~CGFcamera();		///< Base destructor
+		virtual ~CGFcamera();		///< Base destructor
 
 		virtual void applyView();			///< Applies View transformation (typically used in the beginning of a scene render, in CGFscene::display() )
 		virtual void updateProjectionMatrix(int width, int height);		///< Updates the projection matrix. Typically invoked after viewport change, e.g. as a result of a window reshape that triggers CGFapplication::reshape()
