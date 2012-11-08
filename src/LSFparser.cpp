@@ -598,24 +598,28 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 					exit_("Tag <controlpoint> at node " + (string) pnode->id
 									+ " is missing or misspelled.");
 
-
+				int numControlPoints = ((order+1)*(order+1));
+				cout << numControlPoints << endl;
+				float **cp = new float*[numControlPoints];
+				for(int i = 0; i < numControlPoints; i++){
+					cp[i]=new float[3];
+				}
 				int existingControlpoints = 0;
 				while (controlPoints) {
+					queryResult = controlPoints->QueryFloatAttribute("x", &cp[existingControlpoints][0]);
+					queryResult = controlPoints->QueryFloatAttribute("y", &cp[existingControlpoints][1]);
+					queryResult = controlPoints->QueryFloatAttribute("z", &cp[existingControlpoints][2]);
 					existingControlpoints++;
-					ControlPoint controlPoint;
-					queryResult = controlPoints->QueryFloatAttribute("x", &controlPoint.X);
-					queryResult = controlPoints->QueryFloatAttribute("y", &controlPoint.Y);
-					queryResult = controlPoints->QueryFloatAttribute("z", &controlPoint.Z);
 					if (queryResult != TIXML_SUCCESS)
 						exit_("There is an error in patch controlpoints values at node "
 								+ (string) pnode->id + ".");
 
-					prim.controlPoints.push_back(controlPoint);
-
 					controlPoints = controlPoints->NextSiblingElement();
 				}
 
-				int diff = (order+1)*(order+1) - existingControlpoints;
+				prim.controlPoints = cp;
+
+				int diff = numControlPoints - existingControlpoints;
 				char buff[33];
 				itoa(diff, buff, 30);
 				if (existingControlpoints != (order+1)*(order+1))

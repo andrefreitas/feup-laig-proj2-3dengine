@@ -62,6 +62,9 @@ void LSFprimitive::draw(Primitive primitive, LSFappearance *currentAppearance){
 
 			glutSolidTorus(primitive.attr["inner"],primitive.attr["outer"],primitive.attr["slices"],primitive.attr["loops"]);
 		} break;
+		case patch:{
+
+		}
 	}
 }
 

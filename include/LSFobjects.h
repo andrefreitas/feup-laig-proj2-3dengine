@@ -16,10 +16,6 @@
 #include "CGFcamera.h"
 #include "LSFvertex.h"
 
-struct ControlPoint{
-	float X, Y, Z;
-};
-
 /**
  * Primitive: a class for holding all existing primitives
  * OOP is not necessary because we have a map that is for the attributes
@@ -29,7 +25,7 @@ class Primitive{
 	public:
 		PrimitiveType type;
 		map<string,float> attr;
-		vector<ControlPoint> controlPoints;
+		float **controlPoints;
 		string compute;
 		LSFvertex normal;
 		vector<LSFvertex> uvCoords;
