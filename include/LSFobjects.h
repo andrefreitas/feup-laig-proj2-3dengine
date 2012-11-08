@@ -25,12 +25,11 @@ class Primitive{
 	public:
 		PrimitiveType type;
 		map<string,float> attr;
-		float **controlPoints;
-		string compute;
+		GLfloat *controlPoints;
+		GLenum compute;
 		LSFvertex normal;
 		vector<LSFvertex> uvCoords;
 		Primitive(PrimitiveType type):type(type){};
-
 };
 
 /**

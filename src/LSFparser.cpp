@@ -582,15 +582,19 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 					exit_("There is an error in patch values at node "
 									+ (string) pnode->id + ".");
 
-				compute= child->Attribute("compute");
+				compute = child->Attribute("compute");
 				if(compute != "fill" && compute != "line" && compute != "point")
 					exit_("There is an error in patch compute value at node "
 														+ (string) pnode->id + ".");
 
-				prim.attr["order"]=order;
-				prim.attr["partsU"]=partsU;
-				prim.attr["partsV"]=partsV;
-				prim.compute = compute;
+				prim.attr["order"] = order;
+				prim.attr["partsU"] = partsU;
+				prim.attr["partsV"] = partsV;
+
+				if(compute == "fill") prim.compute = GL_FILL;
+				else if(compute == "line") prim.compute = GL_LINE;
+				else if(compute == "point") prim.compute = GL_POINT;
+
 				cout << "Patch with order: " << order << ", partsU: " << partsU;
 				cout << ", partsV: " << partsV << ", compute: " << compute << endl;
 
@@ -600,22 +604,20 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 									+ " is missing or misspelled.");
 
 				int numControlPoints = ((order+1)*(order+1));
-				cout << numControlPoints << endl;
-				float **cp = new float*[numControlPoints];
-				for(int i = 0; i < numControlPoints; i++){
-					cp[i]=new float[3];
-				}
+				GLfloat *cp;
+				cp = (GLfloat*)malloc (numControlPoints*sizeof(GLfloat[3]));
 				int existingControlpoints = 0;
+				int i=0;
 				while (controlPoints) {
-					queryResult = controlPoints->QueryFloatAttribute("x", &cp[existingControlpoints][0]);
-					queryResult = controlPoints->QueryFloatAttribute("y", &cp[existingControlpoints][1]);
-					queryResult = controlPoints->QueryFloatAttribute("z", &cp[existingControlpoints][2]);
-					existingControlpoints++;
+					queryResult |= controlPoints->QueryFloatAttribute("x", &cp[i++]);
+					queryResult |= controlPoints->QueryFloatAttribute("y", &cp[i++]);
+					queryResult |= controlPoints->QueryFloatAttribute("z", &cp[i++]);
 					if (queryResult != TIXML_SUCCESS)
 						exit_("There is an error in patch controlpoints values at node "
 								+ (string) pnode->id + ".");
 
 					controlPoints = controlPoints->NextSiblingElement();
+					existingControlpoints++;
 				}
 
 				prim.controlPoints = cp;
