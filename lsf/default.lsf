@@ -1510,6 +1510,23 @@
 				<triangle x1="0.0" y1="0.0" z1="0.0" x2="0.05" y2="0.0" z2="-0.175" x3="-0.05" y3="0.0" z3="-0.175" />
 			</children>
 		</node>
+		
+		<node id="Plano">
+			<transforms>
+			</transforms>
+			
+			<appearanceref id="inherit" />
+				 
+			<children>
+				<plane parts="5" />
+				<patch order="1" partsU="10" partsV="10" compute="fill">
+            		<controlpoint x="0.0" y="0.0" z="0.0" />
+            		<controlpoint x="0.0" y="2.0" z="3.0" />
+            		<controlpoint x="4.0" y="4.0" z="6.0" />
+            		<controlpoint x="4.0" y="6.0" z="6.0" />
+    			</patch>
+			</children>
+		</node>
 			
 	</graph>
 </lsf>

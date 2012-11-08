@@ -370,8 +370,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 			cout << "\tChildren: " << endl;
 		TiXmlElement *children;
 		if ((children = node->FirstChildElement("children")) == NULL)
-			exit_(
-					"Tag <children> at node " + (string) pnode->id
+			exit_("Tag <children> at node " + (string) pnode->id
 							+ " is missing or misspelled.");
 
 		TiXmlElement *child = children->FirstChildElement();
@@ -532,8 +531,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 				queryResult |= child->QueryIntAttribute("slices", &slices);
 				queryResult |= child->QueryIntAttribute("loops", &loops);
 				if (queryResult != TIXML_SUCCESS)
-					exit_(
-							"There is an error in triangle values at node "
+					exit_("There is an error in triangle values at node "
 									+ (string) pnode->id + ".");
 
 				prim.attr["slices"] = slices;
@@ -562,9 +560,67 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 				int parts;
 
 				queryResult |= child->QueryIntAttribute("parts", &parts);
+				if (queryResult != TIXML_SUCCESS)
+					exit_("There is an error in plane parts value at node "
+									+ (string) pnode->id + ".");
+
 				prim.attr["parts"]=parts;
 				cout << "Plane with parts: " << parts << endl;
 
+			}
+			else if (strcmp(childVal, "patch") == 0) {
+				existingValidChilds++;
+				Primitive prim(patch);
+				int order, partsU, partsV;
+				string compute;
+
+				queryResult |= child->QueryIntAttribute("order", &order);
+				queryResult |= child->QueryIntAttribute("partsU", &partsU);
+				queryResult |= child->QueryIntAttribute("partsV", &partsV);
+				if (queryResult != TIXML_SUCCESS)
+					exit_("There is an error in patch values at node "
+									+ (string) pnode->id + ".");
+
+				compute= child->Attribute("compute");
+				if(compute != "fill" && compute != "line" && compute != "point")
+					exit_("There is an error in patch compute value at node "
+														+ (string) pnode->id + ".");
+
+				prim.attr["order"]=order;
+				prim.attr["partsU"]=partsU;
+				prim.attr["partsV"]=partsV;
+				prim.compute = compute;
+				cout << "Patch with order: " << order << ", partsU: " << partsU;
+				cout << ", partsV: " << partsV << ", compute: " << compute << endl;
+
+				TiXmlElement *controlPoints;
+				if ((controlPoints = child->FirstChildElement("controlpoint")) == NULL)
+					exit_("Tag <controlpoint> at node " + (string) pnode->id
+									+ " is missing or misspelled.");
+
+
+				int existingControlpoints = 0;
+				while (controlPoints) {
+					existingControlpoints++;
+					ControlPoint controlPoint;
+					queryResult = controlPoints->QueryFloatAttribute("x", &controlPoint.X);
+					queryResult = controlPoints->QueryFloatAttribute("y", &controlPoint.Y);
+					queryResult = controlPoints->QueryFloatAttribute("z", &controlPoint.Z);
+					if (queryResult != TIXML_SUCCESS)
+						exit_("There is an error in patch controlpoints values at node "
+								+ (string) pnode->id + ".");
+
+					prim.controlPoints.push_back(controlPoint);
+
+					controlPoints = controlPoints->NextSiblingElement();
+				}
+
+				int diff = (order+1)*(order+1) - existingControlpoints;
+				char buff[33];
+				itoa(diff, buff, 30);
+				if (existingControlpoints != (order+1)*(order+1))
+					exit_("Exists " + (string) buff + " invalid controlpoint(s) at node "
+									+ (string) pnode->id + ".");
 			}
 
 			// -->
@@ -574,8 +630,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 		char buffer[33];
 		itoa((existingChilds - existingValidChilds), buffer, 30);
 		if (existingChilds != existingValidChilds)
-			exit_(
-					"Exists " + (string) buffer + " invalid child(s) at node "
+			exit_("Exists " + (string) buffer + " invalid child(s) at node "
 							+ (string) pnode->id + ".");
 
 		// -->
