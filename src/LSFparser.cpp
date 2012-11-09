@@ -609,6 +609,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 				int existingControlpoints = 0;
 				int i=0;
 				while (controlPoints) {
+					existingControlpoints++;
 					queryResult |= controlPoints->QueryFloatAttribute("x", &cp[i++]);
 					queryResult |= controlPoints->QueryFloatAttribute("y", &cp[i++]);
 					queryResult |= controlPoints->QueryFloatAttribute("z", &cp[i++]);
@@ -617,17 +618,17 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 								+ (string) pnode->id + ".");
 
 					controlPoints = controlPoints->NextSiblingElement();
-					existingControlpoints++;
 				}
 
 				prim.controlPoints = cp;
 
 				int diff = numControlPoints - existingControlpoints;
+				cout << diff << endl;
 				char buff[33];
 				itoa(diff, buff, 30);
-				if (existingControlpoints != (order+1)*(order+1))
-					exit_("Exists " + (string) buff + " invalid controlpoint(s) at node "
-									+ (string) pnode->id + ".");
+				if (diff != 0)
+					exit_("Exists " + (string)buff + " invalid or missing controlpoint(s) at node "
+									+ (string)pnode->id + ".");
 
 				pnode->childPrimitives.push_back(prim);
 			}
