@@ -1,17 +1,28 @@
 #include "LSFrender.h"
-#include "LSFobjects.h"
 #include <iostream>
 #include "LSFvertex.h"
 #include "LSFnode.h"
 #include "LSFprimitive.h"
+#include "LSFobjects.h"
 
 using namespace std;
 void LSFrender::render(map<string, LSFnode*> &nodes, string &rootNode,
 		map<string, LSFappearance*> appearances,
-		stack<LSFappearance*> &appearancesStack) {
+		stack<LSFappearance*> &appearancesStack,map<string,LSFanimation*> animations, double timeSeconds) {
 
 	if (nodes[rootNode] == 0)
 		return;
+
+	// Animations
+	bool haveAnimation=nodes[rootNode]->animationRef!="none";
+	if(haveAnimation){
+		glPushMatrix();
+		LSFanimation* animationp=animations[nodes[rootNode]->animationRef];
+		LSFvertex displacement=animationp->getDisplacementAt(timeSeconds);
+		glTranslated(displacement.x,displacement.y,displacement.z);
+	}
+
+
 	if (nodes[rootNode]->isDisplayList) {
 		glCallList(nodes[rootNode]->displayList);
 		//cout << "\n É Display List!" << rootNode << endl;
@@ -42,9 +53,13 @@ void LSFrender::render(map<string, LSFnode*> &nodes, string &rootNode,
 
 	// Process the noderefs
 	for (int unsigned i = 0; i < nodes[rootNode]->childNoderefs.size(); i++)
-		render(nodes, nodes[rootNode]->childNoderefs[i], appearances,appearancesStack);
+		render(nodes, nodes[rootNode]->childNoderefs[i], appearances,appearancesStack,animations,timeSeconds);
 
 	appearancesStack.pop();
 	glPopMatrix();
 
+	// End Animation
+	if(haveAnimation){
+		glPopMatrix();
+	}
 }

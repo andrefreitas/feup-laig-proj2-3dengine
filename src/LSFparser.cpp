@@ -1,5 +1,8 @@
 #include <iostream>
 #include "LSFParser.h"
+
+#include "LSFprimitive.h"
+#include "LSFnode.h"
 #include "LSFobjects.h"
 #include <map>
 #include <stack>
@@ -8,8 +11,6 @@
 #include "CGFlight.h"
 #include "LSFvertex.h"
 #include <iomanip>
-#include "LSFnode.h"
-#include "LSFprimitive.h"
 
 
 void exit_(string str, int error = 0) {
@@ -33,6 +34,7 @@ void exit_(string str, int error = 0) {
 	getchar(); // wait feedback
 	exit(-1);
 }
+
 LSFparser::LSFparser(char* a) {
 	// Load the File
 	if (DEBUGMODE)
@@ -64,6 +66,10 @@ LSFparser::LSFparser(char* a) {
 		if ((lightingsElement = lsfElement->FirstChildElement("lighting"))
 				== NULL)
 			exit_("Tag <lighting> is missing or misspelled.");
+
+		// Don't check animations because a scene don't need to have them
+		animationElement=lsfElement->FirstChildElement("animations");
+
 	} else
 		exit_(lsfFile->ErrorDesc(), lsfFile->ErrorRow());
 	// Parse
@@ -238,6 +244,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 		LSFnode *pnode = new LSFnode();
 		pnode->id = new char[100];
 
+
 		// Display Lists
 		if (node->Attribute("displaylist") != 0)
 			node->QueryBoolAttribute("displaylist", &(pnode->isDisplayList));
@@ -251,6 +258,10 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 
 		if (DEBUGMODE)
 			cout << "\tNode: " << node->Attribute("id") << endl;
+
+		// Animation ID
+		TiXmlElement *animation=node->FirstChildElement("animation");
+		pnode->animationRef=string(animation->Attribute("ref"));
 
 		// (1) Transforms
 		TiXmlElement *transforms;
@@ -1163,4 +1174,42 @@ void LSFparser::buildDisplayLists(map<string,LSFnode*> &nodes,string &rootNode,m
 		if(nodes[rootNode]->isDisplayList & enabledDisplayList){
 			glEndList();
 		}
+}
+void LSFparser::getAnimations(map<string,LSFanimation*> &animations){
+	if(animationElement==NULL) return; // nothing to do here
+
+	TiXmlElement *node = animationElement->FirstChildElement();
+	const char *animationID;
+	float animationSpan;
+	LSFanimation *animation;
+	LSFvertex point;
+
+	cout << "Animations:\n";
+	// For every animation
+	while(node){
+		animationID=node->Attribute("id");
+		node->QueryFloatAttribute("span",&animationSpan);
+		cout << "-> ID " << animationID << " Span " << animationSpan << endl;
+
+		// For every control point
+		TiXmlElement *controlpoint=node->FirstChildElement();
+		vector<LSFvertex> cps;
+		while(controlpoint){
+			controlpoint->QueryDoubleAttribute("xx",&point.x);
+			controlpoint->QueryDoubleAttribute("yy",&point.y);
+			controlpoint->QueryDoubleAttribute("zz",&point.z);
+			cout << "--> Control Point "; point.print(); cout << endl;
+			cps.push_back(point);
+			// -->
+			controlpoint = controlpoint->NextSiblingElement();
+		}
+
+		// Create an animation
+		animation=new LSFanimation(cps,animationSpan);
+		animations[string(animationID)]=animation;
+		// -->
+		node = node->NextSiblingElement();
+	}
+
+
 }

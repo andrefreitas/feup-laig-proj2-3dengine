@@ -11,11 +11,12 @@
 #include "LSFobjects.h"
 #include "CGFapplication.h"
 #include <stack>
+#include "LSFanimation.h"
 /**
  * LSFrender is a class that receives all the scene objects and render it in OPENGL
  */
 class LSFrender{
 	public:
-		static void render(map<string,LSFnode*> &nodes,string &rootNode,map<string,LSFappearance*> appearances,stack<LSFappearance*> &appearancesStack);
+		static void render(map<string,LSFnode*> &nodes,string &rootNode,map<string,LSFappearance*> appearances,stack<LSFappearance*> &appearancesStack,map<string,LSFanimation*> animations, double timeSeconds);
 };
 #endif

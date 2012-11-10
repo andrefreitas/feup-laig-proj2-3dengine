@@ -2,7 +2,7 @@
 #include <math.h>
 #include <iostream>
 using namespace std;
-#define DEBUG_ANIMATION 1
+#define DEBUG_ANIMATION 0
 LSFanimation::LSFanimation(vector<LSFvertex> controlPoints, double totalTime) {
 	this->controlPoints = controlPoints;
 	this->totalTime = totalTime;

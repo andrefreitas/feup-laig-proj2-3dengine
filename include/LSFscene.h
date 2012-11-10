@@ -25,6 +25,7 @@ class LSFscene : public CGFscene
 	map<string,LSFnode*> nodes;
 	map<string,LSFlight*> lights;
 	map<string, LSFcamera*> cameras;
+	map<string,LSFanimation*> animations;
 	LSFappearance* defaultAppearance;
 	string rootNode;
 	bool lights_enabled, lights_local, lights_doublesided;
@@ -33,6 +34,7 @@ class LSFscene : public CGFscene
 
 	GLenum face;
 	GLenum mode;
+	static double timeSeconds;
 public:
 	LSFscene();
 	LSFscene(char* argv[]);
@@ -50,6 +52,7 @@ public:
 	struct globalsData *getGlobals();
 	map<string, LSFlight*> * getLights();
 	map<string, LSFcamera*> * getCameras();
+	void update(long millis);
 };
 
 #endif

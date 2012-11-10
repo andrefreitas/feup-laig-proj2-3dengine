@@ -2,6 +2,8 @@
 #include <iostream>
 #include "LSFvertex.h"
 using namespace std;
+*/
+/*
 int main() {
 	LSFvertex cp1(0, 0, 0);
 	LSFvertex cp2(3, 0, 0);
@@ -23,5 +25,15 @@ int main() {
 			<< displacement.z << " )\n";
 
 	return 0;
+}
+
+*/
+/*
+int main(){
+	LSFvertex rotation;
+	LSFvertex v1(5,0,2);
+	LSFvertex v2(0,5,0);
+	crossProduct(v2,v1).print(); cout << endl;
+	angleBetween(v1,v2).print();cout << endl;
 }
 */

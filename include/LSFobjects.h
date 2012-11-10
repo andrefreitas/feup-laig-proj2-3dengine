@@ -17,22 +17,6 @@
 #include "LSFvertex.h"
 
 /**
- * Primitive: a class for holding all existing primitives
- * OOP is not necessary because we have a map that is for the attributes
- */
-//enum PrimitiveType{ rectangle,triangle,cylinder,sphere,torus,plane, patch, vehicle};
-//class Primitive{
-//	public:
-//		PrimitiveType type;
-//		map<string,float> attr;
-//		GLfloat *controlPoints;
-//		GLenum compute;
-//		LSFvertex normal;
-//		vector<LSFvertex> uvCoords;
-//		Primitive(PrimitiveType type):type(type){};
-//};
-
-/**
  * Transform a class for holding all existing transformations
  * OOP is not necessary because we have a map that is for the attributes
  */
