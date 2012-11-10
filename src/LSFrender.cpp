@@ -17,8 +17,15 @@ void LSFrender::render(map<string, LSFnode*> &nodes, string &rootNode,
 	if(haveAnimation){
 		glPushMatrix();
 		LSFanimation* animationp=animations[nodes[rootNode]->animationRef];
+		// if invalid reference
+		if (animationp==0) {
+			haveAnimation=0;
+			glPopMatrix();
+			}
+		else {
 		LSFvertex displacement=animationp->getDisplacementAt(timeSeconds);
 		glTranslated(displacement.x,displacement.y,displacement.z);
+		}
 	}
 
 
