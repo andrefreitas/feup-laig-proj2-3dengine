@@ -363,6 +363,7 @@ Terrain::Terrain(string heightmap, string texturemap, string fragmentshader, str
 }
 
 void Terrain::draw(){
+	cout << "Shader: " << texturemap << endl;
 	//shader->bind();
 	GLfloat ctrlpoints[4][3] = {
 			{-0.5, 0, -0.5},
