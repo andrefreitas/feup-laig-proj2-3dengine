@@ -63,7 +63,7 @@
 	</appearances> 
 	
 	<!-- graph information -->
-	<graph rootid="Plano">
+	<graph rootid="Helicoptero">
 
 		
 		<node id="Plano" displaylist="1">
@@ -95,8 +95,8 @@
 		<node id="Helicoptero" displaylist="0">
 			<transforms>
 				<rotate axis="x" angle="90" />
-				<translate x="0" y="0" z="-2" />
-				<scale x="2" y="2" z="2"/>
+				<translate x="2" y="0" z="-2" />
+				<scale x="4" y="1" z="4"/>
 			</transforms>
 			
 			<appearanceref id="wwe" />
