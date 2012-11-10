@@ -642,10 +642,10 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 				existingValidChilds++;
 
 				char *heightmap,*texturemap, *fragmentshader, *vertexshader;
-				heightmap=new char[100]; strcpy(heightmap,"../shaders/");
-				texturemap=new char[100]; strcpy(texturemap,"../shaders/");
-				fragmentshader=new char[100]; strcpy(fragmentshader,"../shaders/");
-				vertexshader=new char[100]; strcpy(vertexshader,"../shaders/");
+				heightmap=new char[100]; strcpy(heightmap,"..\\shaders\\");
+				texturemap=new char[100]; strcpy(texturemap,"..\\shaders\\");
+				fragmentshader=new char[100]; strcpy(fragmentshader,"..\\shaders\\");
+				vertexshader=new char[100]; strcpy(vertexshader,"..\\shaders\\");
 
 				strcat(heightmap,child->Attribute("heightmap"));
 				strcat(texturemap,child->Attribute("texturemap"));
