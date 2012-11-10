@@ -353,7 +353,7 @@ LSFprimitive::~LSFprimitive() {
 	// TODO Auto-generated destructor stub
 }
 
-Terrain::Terrain(string heightmap, string texturemap, string fragmentshader, string vertexshader):LSFprimitive(terrain){
+Terrain::Terrain(string heightmap, string texturemap, string fragmentshader, string vertexshader){
 	this->heightmap=heightmap;
 	this->texturemap=texturemap;
 	this->fragmentshader=fragmentshader;
@@ -364,10 +364,16 @@ Terrain::Terrain(string heightmap, string texturemap, string fragmentshader, str
 
 void Terrain::draw(){
 	//shader->bind();
-	cout << "A desenhar um terrno\n";
-	GLfloat controlpoints[4][3] = {
-							{ -0.5, 0, 0.5},{ 0.5, 0, 0.5},
-							{-0.5, 0, -0.5},{ 0.5, 0, -0.5}};
+	GLfloat ctrlpoints[4][3] = {
+			{-0.5, 0, -0.5},
+			{ 0.5, 0, -0.5},
+			{ -0.5, 0, 0.5},
+			{ 0.5, 0, 0.5}};
 
-	createEvaluator(&controlpoints[0][0]);
+	glColor3f(1.0,1.0,1.0);
+	glNormal3f(0,1,0);
+	glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 2,  0.0, 1.0, 6, 2,  &ctrlpoints[0][0]);
+	glEnable(GL_MAP2_VERTEX_3);
+	glMapGrid2f(20, 0.0,1, 20, 0.0,1);
+	glEvalMesh2(GL_FILL, 0,20, 0,20);
 }

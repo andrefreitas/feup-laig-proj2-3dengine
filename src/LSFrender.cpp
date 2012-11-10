@@ -52,7 +52,11 @@ void LSFrender::render(map<string, LSFnode*> &nodes, string &rootNode,
 	for (int unsigned i = 0; i < nodes[rootNode]->childPrimitives.size(); i++) {
 		LSFprimitive *primitive=&nodes[rootNode]->childPrimitives[i];
 		primitive->appearance = currentAppearance;
-		primitive->draw();
+
+		if(primitive->type==terrain)
+			primitive->terrain->draw();
+		else
+			primitive->draw();
 	}
 
 	// Process the noderefs

@@ -57,7 +57,6 @@
 			<appearanceref id="inherit" />
 				 
 			<children>
-				<rectangle x1="0" y1="0" x2="3" y2="3" />
 				<terrain heightmap="mapadealtura" texturemap="mapadetextura" fragmentshader="fragmentos" vertexshader="vertices" />
 			</children>
 		</node>

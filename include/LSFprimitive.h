@@ -15,6 +15,17 @@
 #include "LSFvertex.h"
 #include <CGFshader.h>
 
+class Terrain{
+	string heightmap;
+	string texturemap;
+	string fragmentshader;
+	string vertexshader;
+	CGFshader* shader;
+	public:
+	Terrain(string heightmap, string texturemap, string fragmentshader, string vertexshader);
+	void draw();
+
+};
 enum PrimitiveType{ rectangle,triangle,cylinder,sphere,torus,plane, patch, vehicle,terrain};
 class LSFprimitive{
 public:
@@ -29,7 +40,7 @@ public:
 	GLenum compute;
 	LSFvertex normal;
 	vector<LSFvertex> uvCoords;
-
+	Terrain *terrain;
 	LSFprimitive(PrimitiveType type);
 	void createEvaluator(GLfloat *ctrlpoints, GLfloat *nrmlcompon, GLfloat *textpoints,
 			             GLfloat *colorpoints, int startU, int startV);
@@ -37,15 +48,5 @@ public:
 	virtual ~LSFprimitive();
 };
 
-class Terrain:public LSFprimitive{
-	string heightmap;
-	string texturemap;
-	string fragmentshader;
-	string vertexshader;
-	CGFshader* shader;
-	public:
-	Terrain(string heightmap, string texturemap, string fragmentshader, string vertexshader);
-	void draw();
 
-};
 #endif /* LSFPRIMITIVE_H_ */

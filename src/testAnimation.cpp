@@ -1,7 +1,8 @@
-
-/*#include "LSFanimation.h"
+/*
+#include "LSFanimation.h"
 #include <iostream>
 #include "LSFvertex.h"
+#include "LSFprimitive.h"
 using namespace std;
 */
 /*

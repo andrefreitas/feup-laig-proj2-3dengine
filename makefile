@@ -32,4 +32,4 @@ test:
 	echo $(OBJ)
 
 animation:
-	$(CCC) $(INCLUDES) -o animation src/LSFanimation.cpp src/testAnimation.cpp src/LSFvertex.cpp
+	$(CCC) $(INCLUDES) -o animation src/LSFanimation.cpp src/testAnimation.cpp src/LSFvertex.cpp src/LSFprimitive.cpp $(LIBS)
