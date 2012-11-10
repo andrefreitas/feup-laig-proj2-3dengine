@@ -1,6 +1,4 @@
 #include "LSFvertex.h"
-#include "math.h"
-#include <iostream>
 
 using namespace std;
 LSFvertex::LSFvertex(double x, double y, double z) {

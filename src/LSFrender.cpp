@@ -1,9 +1,4 @@
 #include "LSFrender.h"
-#include <iostream>
-#include "LSFvertex.h"
-#include "LSFnode.h"
-#include "LSFprimitive.h"
-#include "LSFobjects.h"
 
 using namespace std;
 void LSFrender::render(map<string, LSFnode*> &nodes, string &rootNode,

@@ -3,9 +3,14 @@
  * Author:      - Paulo Araújo, paulojmaraujo@gmail.com
  * Copyright:   - 14/10/2012, LAIG, FEUP
  ****************************************************************************/
+
 #ifndef LSFVERTEX_H_
 #define LSFVERTEX_H_
+
 #include <vector>
+#include <math.h>
+#include <iostream>
+
 using namespace std;
 /**
  * LSFvertex - a class for defining a vertex with his coordinates and basic transformations

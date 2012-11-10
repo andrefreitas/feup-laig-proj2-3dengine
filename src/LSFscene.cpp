@@ -1,17 +1,8 @@
 #include "LSFscene.h"
-#include "CGFaxis.h"
-#include "CGFapplication.h"
-#include <math.h>
-#include "LSFrender.h"
-#include "LSFinterface.h"
-#include <iostream>
-#include "CGFlight.h"
 
 using namespace std;
 float pi = acos(-1.0);
 float deg2rad=pi/180.0;
-
-#include "CGFappearance.h"
 
 CGFappearance *mat1;
 

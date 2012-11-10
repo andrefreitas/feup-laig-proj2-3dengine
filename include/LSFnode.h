@@ -4,17 +4,20 @@
  * Copyright:   - 14/10/2012, LAIG, FEUP
  ****************************************************************************/
 
-#include "LSFprimitive.h"
-#include "LSFobjects.h"
 #ifndef LSFNODE_H_
 #define LSFNODE_H_
+
+#include "LSFprimitive.h"
 
 /**
  * LSFnode: a class that is for the nodes in the scenegraph
  */
 class LSFnode{
 	public:
-	LSFnode();
+	LSFnode(){
+		animationRef="none";
+		isDisplayList=0;
+	}
 	char *id;
 	float transformMatrix[16]; // When the node is parsed, the transformations are put in a stack
 	string appearance; // Reference to the map of appearances

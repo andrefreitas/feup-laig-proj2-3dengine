@@ -1,17 +1,4 @@
-#include <iostream>
 #include "LSFParser.h"
-
-#include "LSFprimitive.h"
-#include "LSFnode.h"
-#include "LSFobjects.h"
-#include <map>
-#include <stack>
-#include <CGFapplication.h>
-#include <vector>
-#include "CGFlight.h"
-#include "LSFvertex.h"
-#include <iomanip>
-
 
 void exit_(string str, int error = 0) {
 	cout << "\n\n\n" << endl;
