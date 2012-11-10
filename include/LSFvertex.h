@@ -43,6 +43,7 @@ public:
 	 * @param dz the z translation
 	 */
 	void translate(double dx, double dy, double dz);
+	void print();
 };
 
 /**
@@ -80,4 +81,8 @@ vector<LSFvertex> computeTriangleUV(vector<LSFvertex> vertexList);
 
 float computeNormBetween(LSFvertex p1,LSFvertex p2);
 float computeTriangleHeight(LSFvertex p1,LSFvertex p2,LSFvertex p3);
+float computeAngleBetween(LSFvertex v1, LSFvertex v2);
+
+LSFvertex angleBetween(LSFvertex v1, LSFvertex v2);
+LSFvertex crossProduct(LSFvertex v1, LSFvertex v2);
 #endif /* LSFVERTEX_H_ */

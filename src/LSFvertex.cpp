@@ -9,6 +9,10 @@ LSFvertex::LSFvertex(double x, double y, double z) {
 	this->z = z;
 
 }
+
+void LSFvertex::print(){
+	cout <<"( "<< x << " , "<< y <<" , " << z << " )";
+}
 void LSFvertex::rotateY(double angleRad) {
 	double xtemp = x; // one does not simply use the changed x in the z equation
 	x = x * cos(angleRad) + z * sin(angleRad);
@@ -177,4 +181,54 @@ float computeTriangleHeight(LSFvertex p1,LSFvertex p2,LSFvertex p3){
 		// soo the uv3 coordinates is
 		float height=sideC*sin(angle);
 		return height;
+}
+
+LSFvertex angleBetween(LSFvertex v1, LSFvertex v2){
+	LSFvertex cross=crossProduct(v1,v2);
+	LSFvertex rotation(0,0,0);
+	float degreeAngle=computeAngleBetween(v1,v2);
+
+	// They are on a plane
+	if(cross.x==0 && cross.y==0)
+		rotation.z=degreeAngle;
+	else if(cross.x==0 && cross.z==0)
+		rotation.y=degreeAngle;
+	else if(cross.y==0 && cross.z==0)
+		rotation.x=degreeAngle;
+	else {
+
+	// Else
+	LSFvertex a;
+	LSFvertex b;
+	// Compute angle in x
+	a=v1; a.x=0;
+	b=v2; b.x=0;
+	rotation.x=computeAngleBetween(a,b);
+
+	// Compute angle in y
+	a=v1; a.y=0;
+	b=v2; b.y=0;
+	rotation.y=computeAngleBetween(a,b);
+
+	// Compute angle in z
+	a=v1; a.z=0;
+	b=v2; b.z=0;
+	rotation.z=computeAngleBetween(a,b);
+	}
+	return rotation;
+}
+
+float computeAngleBetween(LSFvertex v1, LSFvertex v2){
+	float normA=sqrt(v1.x*v1.x + v1.y*v1.y + v1.z*v1.z);
+	float normB=sqrt(v2.x*v2.x + v2.y*v2.y + v2.z*v2.z);
+	float cosT=(v1.x*v2.x + v1.y*v2.y + v1.z*v2.z)/(normA*normB);
+	return acos(cosT)/acos(-1)*180;
+}
+LSFvertex crossProduct(LSFvertex v1, LSFvertex v2){
+	LSFvertex cross(0,0,0);
+	cross.x= v1.y*v2.z - v1.z*v2.y;
+	cross.y-= (v1.x*v2.z - v1.z*v2.x);
+	cross.z= v1.x*v2.y - v1.y*v2.x;
+	return cross;
+
 }

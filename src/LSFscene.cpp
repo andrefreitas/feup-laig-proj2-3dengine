@@ -16,6 +16,7 @@ float deg2rad=pi/180.0;
 CGFappearance *mat1;
 
 LSFscene::LSFscene(){}
+double LSFscene::timeSeconds=0;
 
 LSFscene::LSFscene(char* argv[]){
 	if(argv[1] == NULL) inputScene=(char*)"../lsf/default.lsf";
@@ -72,13 +73,14 @@ void LSFscene::init()
 	sceneParser->buildDisplayLists(nodes,rootNode,appearances,appearancesStack,1);
 	// Get the cameras info
 	sceneParser->getCameras(cameras);
-
+	sceneParser->getAnimations(animations);
 	LSFcamera *freeCamera = new LSFcamera;
 	freeCamera->id = "freeMove";
 	cameras["freeMove"] = freeCamera;
 
 	initCameras();
 
+	setUpdatePeriod(10);
 }
 
 map<string, LSFlight*> * LSFscene::getLights(){
@@ -179,7 +181,7 @@ void LSFscene::display()
 	// ---- END Background, camera and axis setup
 	stack<LSFappearance*> appearancesStack;
 	appearancesStack.push(defaultAppearance);
-	LSFrender::render(nodes,rootNode,appearances,appearancesStack);
+	LSFrender::render(nodes,rootNode,appearances,appearancesStack,animations,LSFscene::timeSeconds);
 
 
 	// ---- BEGIN Primitive drawing section
@@ -217,4 +219,8 @@ void LSFscene::setGlobals(){
 	if(globals.culling_enabled) glEnable(GL_CULL_FACE);
 	else glDisable(GL_CULL_FACE);
 
+}
+
+void LSFscene::update(long millis){
+	LSFscene::timeSeconds=(millis/1000);
 }

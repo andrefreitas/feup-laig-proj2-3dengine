@@ -97,6 +97,7 @@ class LSFcamera{
  */
 class LSFnode{
 	public:
+		LSFnode();
 		char *id;
 		float transformMatrix[16]; // When the node is parsed, the transformations are put in a stack
 		string appearance; // Reference to the map of appearances
@@ -104,6 +105,7 @@ class LSFnode{
 		vector<string> childNoderefs; // All the child nodes
 		bool isDisplayList;
 		int displayList;
+		string animationRef;
 };
 /**
  * LSFappearance is a class that defines and appearance

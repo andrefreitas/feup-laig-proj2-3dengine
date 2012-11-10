@@ -12,6 +12,7 @@
 #include "CGFcamera.h"
 #include "LSFobjects.h"
 #include "CGFlight.h"
+#include "LSFanimation.h"
 #include <stack>
 using namespace std;
 /**
@@ -36,6 +37,7 @@ class LSFparser{
 		TiXmlElement* graphElement;
 		TiXmlElement* appearancesElement;
 		TiXmlElement* lightingsElement;
+		TiXmlElement* animationElement;
 		int queryResult;
 	public:
 		LSFparser(char* a);
@@ -45,5 +47,6 @@ class LSFparser{
 		void getAppearances(map<string,LSFappearance*> &appearances);
 		void getLights(map<string,LSFlight*> &lights, bool &enabled, bool &local, bool &doublesided,float *ambient);
 		void buildDisplayLists(map<string,LSFnode*> &nodes,string &rootNode,map<string,LSFappearance*> appearances,stack<LSFappearance*> &appearancesStack, bool enabledDisplayList=0);
+		void getAnimations(map<string,LSFanimation*> &animations);
 };
 #endif

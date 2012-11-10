@@ -56,3 +56,6 @@ void LSFcamera::applyView(){
 		gluLookAt(fromX, fromY, fromZ, toX, toY, toZ, 0, 1, 1);
 
 }
+LSFnode::LSFnode(){
+	animationRef="none";
+}
