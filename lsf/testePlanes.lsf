@@ -2,7 +2,7 @@
 	<!-- global settings -->
 	<globals>
 		<!-- background color -->
-		<background r="1.0" g="1.0" b="1.0" a="1.0" />
+		<background r="0.1" g="0.1" b="0.1" a="1.0" />
 		
 		<!-- polygons configurations -->
 		<polygon mode="fill" shading="gouraud" />
@@ -26,19 +26,13 @@
 	<!-- general lighting -->
 	<lighting doublesided="true" local="true" enabled="true" >
 		<!-- scene ambient light -->
-		<ambient r="0.8" g="0.8" b="0.8" a="1.0" />
+		<ambient r="0.1" g="0.1" b="0.1" a="1.0" />
 		
 		<!-- scene lights -->
 		<lights>
 			<!-- top ring light -->
 			<light id="topLight" enabled="true">
-				<location x="0.0" y="10" z="0.0" />
-				<ambient r="0.2" g="0.2" b="0.2" a="1.0" />
-				<diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
-				<specular r="1.0" g="1.0" b="1.0" a="1.0" />
-			</light>
-			<light id="bottomLight" enabled="true">
-				<location x="0.0" y="-10" z="0.0" />
+				<location x="10.0" y="4.5" z="10.0" />
 				<ambient r="0.2" g="0.2" b="0.2" a="1.0" />
 				<diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
 				<specular r="1.0" g="1.0" b="1.0" a="1.0" />
@@ -58,15 +52,7 @@
 			<shininess value="0.3" />
 			<texture file="wweMagazine.jpg" length_s="0.5" length_t="1" />
 		</appearance>
-		
-		<appearance id="topConcord">
-			<emissive r="0.4" g="0.4" b="0.4" a="1" />
-			<ambient r="0.1" g="0.1" b="0.1" a="1" />
-			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
-			<specular r="0.3" g="0.3" b="0.3" a="1" />
-			<shininess value="0.3" />
-			<texture file="topConcord.png" length_s="1" length_t="1" />
-		</appearance>
+
 
 		<appearance id="vermelho">
 			<emissive r="1.0" g="0" b="0" a="1" />
@@ -78,7 +64,7 @@
 	</appearances> 
 	
 	<!-- graph information -->
-	<graph rootid="Concord">
+	<graph rootid="Plano">
 
 		
 		<node id="Plano" displaylist="1">
@@ -91,28 +77,6 @@
 			<appearanceref id="wwe" />
 				 
 			<children>
-
-    			<noderef id="Helicoptero"/>
-			</children>
-		</node>
-		
-		<node id="Concord" displaylist="0">
-			<transforms>
-				<translate x="-10" y="0" z="-2" />
-				<scale x="1" y="1" z="1"/>
-			</transforms>
-			
-			<appearanceref id="topConcord" />
-				 
-			<children>
-    			<vehicle />
-
-			</children>
-		</node>
-			
-	</graph>
-</lsf>
-
     			<plane parts="5" />
 				<patch order="2" partsU="20" partsV="20" compute="fill">
             		<controlpoint x="-1.0" y="0.0" z="1.0" />
@@ -125,3 +89,9 @@
             		<controlpoint x="0.0" y="-2.5" z="-1.0" />
             		<controlpoint x="1.0" y="0.0" z="-1.0" />
     			</patch>
+			</children>
+		</node>
+			
+	</graph>
+</lsf>
+
