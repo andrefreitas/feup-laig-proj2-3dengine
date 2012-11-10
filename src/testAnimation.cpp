@@ -1,8 +1,9 @@
-#include "LSFanimation.h"
+
+/*#include "LSFanimation.h"
 #include <iostream>
 #include "LSFvertex.h"
 using namespace std;
-
+*/
 /*
 int main() {
 	LSFvertex cp1(0, 0, 0);
@@ -28,7 +29,7 @@ int main() {
 }
 
 */
-
+/*
 int main(){
 	LSFvertex rotation;
 	LSFvertex v1(5,0,2);
@@ -36,4 +37,4 @@ int main(){
 	crossProduct(v2,v1).print(); cout << endl;
 	angleBetween(v1,v2).print();cout << endl;
 }
-
+*/
