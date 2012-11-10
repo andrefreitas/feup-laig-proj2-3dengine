@@ -358,12 +358,12 @@ Terrain::Terrain(string heightmap, string texturemap, string fragmentshader, str
 	this->texturemap=texturemap;
 	this->fragmentshader=fragmentshader;
 	this->vertexshader=vertexshader;
-	//shader=new CGFshader(vertexshader.c_str(),fragmentshader.c_str());
+	shader=new CGFshader(vertexshader.c_str(),fragmentshader.c_str());
 
 }
 
 void Terrain::draw(){
-	//shader->bind();
+	shader->bind();
 	GLfloat ctrlpoints[4][3] = {
 			{-0.5, 0, -0.5},
 			{ 0.5, 0, -0.5},

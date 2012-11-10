@@ -642,15 +642,15 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 				existingValidChilds++;
 
 				char *heightmap,*texturemap, *fragmentshader, *vertexshader;
-				heightmap=new char[100];
-				texturemap=new char[100];
-				fragmentshader=new char[100];
-				vertexshader=new char[100];
+				heightmap=new char[100]; strcpy(heightmap,"..\\shaders\\");
+				texturemap=new char[100]; strcpy(texturemap,"..\\shaders\\");
+				fragmentshader=new char[100]; strcpy(fragmentshader,"..\\shaders\\");
+				vertexshader=new char[100]; strcpy(vertexshader,"..\\shaders\\");
 
-				strcpy(heightmap,child->Attribute("heightmap"));
-				strcpy(texturemap,child->Attribute("texturemap"));
-				strcpy(fragmentshader,child->Attribute("fragmentshader"));
-				strcpy(vertexshader,child->Attribute("vertexshader"));
+				strcat(heightmap,child->Attribute("heightmap"));
+				strcat(texturemap,child->Attribute("texturemap"));
+				strcat(fragmentshader,child->Attribute("fragmentshader"));
+				strcat(vertexshader,child->Attribute("vertexshader"));
 
 				LSFprimitive prim(terrain);
 				prim.terrain=new Terrain(heightmap,texturemap,fragmentshader,vertexshader);
