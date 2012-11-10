@@ -221,6 +221,7 @@ LSFvertex angleBetween(LSFvertex v1, LSFvertex v2){
 float computeAngleBetween(LSFvertex v1, LSFvertex v2){
 	float normA=sqrt(v1.x*v1.x + v1.y*v1.y + v1.z*v1.z);
 	float normB=sqrt(v2.x*v2.x + v2.y*v2.y + v2.z*v2.z);
+	if(normA==0 || normB==0) return 0;
 	float cosT=(v1.x*v2.x + v1.y*v2.y + v1.z*v2.z)/(normA*normB);
 	return acos(cosT)/acos(-1)*180;
 }
