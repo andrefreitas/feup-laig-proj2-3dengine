@@ -76,7 +76,7 @@
 	</animations>
 
 	<!-- graph information -->
-	<graph rootid="Plano">
+	<graph rootid="Helicoptero">
 
 		
 		<node id="Plano" displaylist="0">
@@ -91,6 +91,21 @@
 				 
 			<children>
 				<plane parts="5" />
+			</children>
+		</node>
+		
+		<node id="Helicoptero" displaylist="0">
+			<transforms>
+				<translate x="2" y="2" z="0" />
+				<rotate axis="x" angle="90" />
+				<scale x="4" y="1" z="4"/>
+			</transforms>
+			
+			<animation ref="t3" />
+			<appearanceref id="wwe" />
+				 
+			<children>
+    			<vehicle />
 			</children>
 		</node>
 			

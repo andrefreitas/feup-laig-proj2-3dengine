@@ -63,7 +63,7 @@
 	</appearances> 
 	
 	<!-- graph information -->
-	<graph rootid="Plano">
+	<graph rootid="Helicoptero">
 
 		
 		<node id="Plano" displaylist="1">
@@ -76,18 +76,7 @@
 			<appearanceref id="wwe" />
 				 
 			<children>
-				<plane parts="5" />
-				<patch order="2" partsU="20" partsV="20" compute="fill">
-            		<controlpoint x="-1.0" y="0.0" z="1.0" />
-            		<controlpoint x="0.0" y="-2.5" z="1.0" />
-            		<controlpoint x="1.0" y="0.0" z="1.0" />
-            		<controlpoint x="-1.0" y="0.0" z="0.0" />
-            		<controlpoint x="0.0" y="-2.5" z="0.0" />
-            		<controlpoint x="1.0" y="0.0" z="0.0" />
-            		<controlpoint x="-1.0" y="0.0" z="-1.0" />
-            		<controlpoint x="0.0" y="-2.5" z="-1.0" />
-            		<controlpoint x="1.0" y="0.0" z="-1.0" />
-    			</patch>
+
     			<noderef id="Helicoptero"/>
 			</children>
 		</node>
@@ -103,9 +92,22 @@
 				 
 			<children>
     			<vehicle />
+
 			</children>
 		</node>
 			
 	</graph>
 </lsf>
 
+    			<plane parts="5" />
+				<patch order="2" partsU="20" partsV="20" compute="fill">
+            		<controlpoint x="-1.0" y="0.0" z="1.0" />
+            		<controlpoint x="0.0" y="-2.5" z="1.0" />
+            		<controlpoint x="1.0" y="0.0" z="1.0" />
+            		<controlpoint x="-1.0" y="0.0" z="0.0" />
+            		<controlpoint x="0.0" y="-2.5" z="0.0" />
+            		<controlpoint x="1.0" y="0.0" z="0.0" />
+            		<controlpoint x="-1.0" y="0.0" z="-1.0" />
+            		<controlpoint x="0.0" y="-2.5" z="-1.0" />
+            		<controlpoint x="1.0" y="0.0" z="-1.0" />
+    			</patch>

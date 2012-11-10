@@ -3,6 +3,10 @@
 using namespace std;
 
 LSFprimitive::LSFprimitive(PrimitiveType type):type(type){
+	compute = GL_FILL;
+	attr["order"] = 1;
+	attr["partsU"] = 2;
+	attr["partsV"] = 2;
 }
 
 void LSFprimitive::createEvaluator(GLfloat *ctrlpoints, GLfloat *nrmlcompon = NULL, GLfloat *textpoints = NULL,
@@ -10,25 +14,20 @@ void LSFprimitive::createEvaluator(GLfloat *ctrlpoints, GLfloat *nrmlcompon = NU
 	float u,v;
 	u=1/(float)appearance->length_s;
 	v=1/(float)appearance->length_t;
-	GLenum mode;
-	int order, partsU, partsV;
+	int partsU, partsV;
 
 	if(type == plane){
-		mode = GL_FILL;
-		order = 1;
 		partsU = partsV = attr["parts"];
 	}
 	else{
-		mode = compute;
-		order = attr["order"];
 		partsU = attr["partsU"];
 		partsV = attr["partsV"];
 	}
 
 	if(nrmlcompon == NULL) glFrontFace(GL_CW);
 
-	glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, (order+1),
-			                  0.0, 1.0, 3*(order+1), (order+1), ctrlpoints);
+	glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, (attr["order"]+1),
+			                  0.0, 1.0, 3*(attr["order"]+1), (attr["order"]+1), ctrlpoints);
 
 	if(textpoints == NULL){
 		GLfloat texturespoints[4][2] = {{0.0, 0.0},{u, 0.0},{0.0, v},{u, v}};
@@ -38,12 +37,12 @@ void LSFprimitive::createEvaluator(GLfloat *ctrlpoints, GLfloat *nrmlcompon = NU
 		glMap2f(GL_MAP2_TEXTURE_COORD_2, 0, 1, 2, 2, 0, 1, 4, 2, textpoints);
 
 	if(nrmlcompon != NULL)
-		glMap2f(GL_MAP2_NORMAL, 0.0, 1.0, 3, (order+1),
-				                0.0, 1.0, 3*(order+1), (order+1), nrmlcompon);
+		glMap2f(GL_MAP2_NORMAL, 0.0, 1.0, 3, (attr["order"]+1),
+				                0.0, 1.0, 3*(attr["order"]+1), (attr["order"]+1), nrmlcompon);
 
 	if(colorpoints != NULL)
-		glMap2f(GL_MAP2_COLOR_4, 0.0, 1.0, 4, (order+1),
-						         0.0, 1.0, 4*(order+1), (order+1), colorpoints);
+		glMap2f(GL_MAP2_COLOR_4, 0.0, 1.0, 4, (attr["order"]+1),
+						         0.0, 1.0, 4*(attr["order"]+1), (attr["order"]+1), colorpoints);
 	else
 		glColor3f(1.0,1.0,1.0);
 
@@ -59,7 +58,7 @@ void LSFprimitive::createEvaluator(GLfloat *ctrlpoints, GLfloat *nrmlcompon = NU
 		glEnable(GL_MAP2_COLOR_4);
 
 	glMapGrid2f(partsU, 0.0,1, partsV, 0.0,1);
-	glEvalMesh2(mode, startU, partsU, startV, partsV);
+	glEvalMesh2(compute, startU, partsU, startV, partsV);
 
 	if(nrmlcompon == NULL) glFrontFace(GL_CCW);
 }
@@ -132,29 +131,30 @@ void LSFprimitive::draw(){
 			createEvaluator(&controlpoints[0][0]);
 		}break;
 		case vehicle:{
-			GLfloat bodypoints[4][3] = {
-					{ -0.5, 0, 0.5},{ 0.5, 0, 0.5},
-													{-0.5, 0, -0.5},{ 0.5, 0, -0.5}};
-//								{0.0, 0.0, 0.0},
-////								{1.0, 1.0, 0.5},
-////								{2.0, 1.0, 0.5},
-//								{3.0, 0.0, 0.0},
-//
-////								{0.0, 0.0, -1.0},
-////								{1.0, 1.0, -0.5},
-////								{2.0, 1.0, -0.5},
-////								{3.0, 0.0, -1.0},
-////
-////								{0.0, 0.0, -2.0},
-////								{1.0, 1.0, -1.5},
-////								{2.0, 1.0, -1.5},
-////								{3.0, 0.0, -2.0},
-//
-//								{0.0, 0.0, -3.0},
-////								{1.0, 1.0, -2.5},
-////								{2.0, 1.0, -2.5},
-//								{3.0, 0.0, -3.0}};
-			//attr["order"] = 1;
+			attr["order"] = 3;
+			attr["partsU"] = 5;
+			attr["partsV"] = 5;
+
+			GLfloat bodypoints[16][3] = {
+								{0.0, 0.0, 0.0},
+								{1.0, 1.0, 0.5},
+								{2.0, 1.0, 0.5},
+								{3.0, 0.0, 0.0},
+
+								{0.0, 0.0, -1.0},
+								{1.0, 1.0, -0.5},
+								{2.0, 1.0, -0.5},
+								{3.0, 0.0, -1.0},
+
+								{0.0, 0.0, -2.0},
+								{1.0, 1.0, -1.5},
+								{2.0, 1.0, -1.5},
+								{3.0, 0.0, -2.0},
+
+								{0.0, 0.0, -3.0},
+								{1.0, 1.0, -2.5},
+								{2.0, 1.0, -2.5},
+								{3.0, 0.0, -3.0}};
 			createEvaluator(&bodypoints[0][0]);
 		}break;
 	}
