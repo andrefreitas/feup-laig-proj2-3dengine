@@ -376,4 +376,5 @@ void Terrain::draw(){
 	glEnable(GL_MAP2_VERTEX_3);
 	glMapGrid2f(20, 0.0,1, 20, 0.0,1);
 	glEvalMesh2(GL_FILL, 0,20, 0,20);
+	shader->unbind();
 }
