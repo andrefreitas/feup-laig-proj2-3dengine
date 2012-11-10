@@ -252,3 +252,20 @@ LSFprimitive::~LSFprimitive() {
 	// TODO Auto-generated destructor stub
 }
 
+Terrain::Terrain(string heightmap, string texturemap, string fragmentshader, string vertexshader):LSFprimitive(terrain){
+	this->heightmap=heightmap;
+	this->texturemap=texturemap;
+	this->fragmentshader=fragmentshader;
+	this->vertexshader=vertexshader;
+	shader=new CGFshader(vertexshader.c_str(),fragmentshader.c_str());
+
+}
+
+void Terrain::draw(){
+	shader->bind();
+	GLfloat controlpoints[4][3] = {
+							{ -0.5, 0, 0.5},{ 0.5, 0, 0.5},
+							{-0.5, 0, -0.5},{ 0.5, 0, -0.5}};
+
+	createEvaluator(&controlpoints[0][0]);
+}
