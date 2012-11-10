@@ -2,6 +2,7 @@
 #include "LSFobjects.h"
 #include <iostream>
 #include "LSFvertex.h"
+#include "LSFnode.h"
 #include "LSFprimitive.h"
 
 using namespace std;
@@ -34,8 +35,9 @@ void LSFrender::render(map<string, LSFnode*> &nodes, string &rootNode,
 
 	// Process the primitives
 	for (int unsigned i = 0; i < nodes[rootNode]->childPrimitives.size(); i++) {
-		LSFprimitive primitive;
-		primitive.draw(nodes[rootNode]->childPrimitives[i], currentAppearance);
+		LSFprimitive primitive(nodes[rootNode]->childPrimitives[i]);
+		primitive.appearance = currentAppearance;
+		primitive.draw();
 	}
 
 	// Process the noderefs

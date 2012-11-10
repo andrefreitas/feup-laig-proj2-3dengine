@@ -8,7 +8,9 @@
 #include "CGFlight.h"
 #include "LSFvertex.h"
 #include <iomanip>
+#include "LSFnode.h"
 #include "LSFprimitive.h"
+
 
 void exit_(string str, int error = 0) {
 	cout << "\n\n\n" << endl;
@@ -388,7 +390,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 
 			if (strcmp(childVal, "rectangle") == 0) {
 				existingValidChilds++;
-				Primitive prim(rectangle);
+				LSFprimitive prim(rectangle);
 				queryResult = child->QueryFloatAttribute("x1",
 						&prim.attr["x1"]);
 				queryResult |= child->QueryFloatAttribute("x2",
@@ -410,7 +412,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 
 			} else if (strcmp(childVal, "triangle") == 0) {
 				existingValidChilds++;
-				Primitive prim(triangle);
+				LSFprimitive prim(triangle);
 				queryResult = child->QueryFloatAttribute("x1",
 						&prim.attr["x1"]);
 				queryResult |= child->QueryFloatAttribute("x2",
@@ -471,7 +473,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 
 			} else if (strcmp(childVal, "cylinder") == 0) {
 				existingValidChilds++;
-				Primitive prim(cylinder);
+				LSFprimitive prim(cylinder);
 				int slices, stacks;
 				queryResult = child->QueryFloatAttribute("base",
 						&prim.attr["base"]);
@@ -499,7 +501,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 
 			} else if (strcmp(childVal, "sphere") == 0) {
 				existingValidChilds++;
-				Primitive prim(sphere);
+				LSFprimitive prim(sphere);
 				int slices, stacks;
 				queryResult = child->QueryFloatAttribute("radius",
 						&prim.attr["radius"]);
@@ -522,7 +524,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 
 			} else if (strcmp(childVal, "torus") == 0) {
 				existingValidChilds++;
-				Primitive prim(torus);
+				LSFprimitive prim(torus);
 				int slices, loops;
 				queryResult = child->QueryFloatAttribute("inner",
 						&prim.attr["inner"]);
@@ -556,7 +558,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 			}
 			else if (strcmp(childVal, "plane") == 0) {
 				existingValidChilds++;
-				Primitive prim(plane);
+				LSFprimitive prim(plane);
 				int parts;
 
 				queryResult |= child->QueryIntAttribute("parts", &parts);
@@ -571,7 +573,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 			}
 			else if (strcmp(childVal, "patch") == 0) {
 				existingValidChilds++;
-				Primitive prim(patch);
+				LSFprimitive prim(patch);
 				int order, partsU, partsV;
 				string compute;
 
@@ -620,7 +622,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 					controlPoints = controlPoints->NextSiblingElement();
 				}
 
-				prim.controlPoints = cp;
+				prim.ctrlpoints = cp;
 
 				int diff = numControlPoints - existingControlpoints;
 				cout << diff << endl;
@@ -629,6 +631,12 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 				if (diff != 0)
 					exit_("Exists " + (string)buff + " invalid or missing controlpoint(s) at node "
 									+ (string)pnode->id + ".");
+
+				pnode->childPrimitives.push_back(prim);
+			}
+			else if (strcmp(childVal, "vehicle") == 0){
+				existingValidChilds++;
+				LSFprimitive prim(vehicle);
 
 				pnode->childPrimitives.push_back(prim);
 			}
@@ -1133,8 +1141,9 @@ void LSFparser::buildDisplayLists(map<string,LSFnode*> &nodes,string &rootNode,m
 
 		// Process the primitives
 		for (int unsigned i = 0; i < nodes[rootNode]->childPrimitives.size(); i++) {
-			LSFprimitive primitive;
-			primitive.draw(nodes[rootNode]->childPrimitives[i], currentAppearance);
+			LSFprimitive primitive(nodes[rootNode]->childPrimitives[i]);
+			primitive.appearance = currentAppearance;
+			primitive.draw();
 		}
 
 		// Process the childs nodes

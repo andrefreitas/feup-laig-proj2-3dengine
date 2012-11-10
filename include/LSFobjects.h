@@ -20,17 +20,17 @@
  * Primitive: a class for holding all existing primitives
  * OOP is not necessary because we have a map that is for the attributes
  */
-enum PrimitiveType{ rectangle,triangle,cylinder,sphere,torus,plane, patch};
-class Primitive{
-	public:
-		PrimitiveType type;
-		map<string,float> attr;
-		GLfloat *controlPoints;
-		GLenum compute;
-		LSFvertex normal;
-		vector<LSFvertex> uvCoords;
-		Primitive(PrimitiveType type):type(type){};
-};
+//enum PrimitiveType{ rectangle,triangle,cylinder,sphere,torus,plane, patch, vehicle};
+//class Primitive{
+//	public:
+//		PrimitiveType type;
+//		map<string,float> attr;
+//		GLfloat *controlPoints;
+//		GLenum compute;
+//		LSFvertex normal;
+//		vector<LSFvertex> uvCoords;
+//		Primitive(PrimitiveType type):type(type){};
+//};
 
 /**
  * Transform a class for holding all existing transformations
@@ -92,19 +92,6 @@ class LSFcamera{
 		void applyView();
 };
 
-/**
- * LSFnode: a class that is for the nodes in the scenegraph
- */
-class LSFnode{
-	public:
-		char *id;
-		float transformMatrix[16]; // When the node is parsed, the transformations are put in a stack
-		string appearance; // Reference to the map of appearances
-		vector<Primitive> childPrimitives; // All the basic primitives
-		vector<string> childNoderefs; // All the child nodes
-		bool isDisplayList;
-		int displayList;
-};
 /**
  * LSFappearance is a class that defines and appearance
  */

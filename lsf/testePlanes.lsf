@@ -66,10 +66,10 @@
 	<graph rootid="Plano">
 
 		
-		<node id="Plano" displaylist="0">
+		<node id="Plano" displaylist="1">
 			<transforms>
-				<translate x="2" y="2" z="0" />
 				<rotate axis="x" angle="90" />
+				<translate x="2" y="0" z="-2" />
 				<scale x="4" y="1" z="4"/>
 			</transforms>
 			
@@ -78,18 +78,34 @@
 			<children>
 				<plane parts="5" />
 				<patch order="2" partsU="20" partsV="20" compute="fill">
-            		<controlpoint x="0.0" y="0.0" z="0.0" />
-            		<controlpoint x="1.0" y="3.0" z="-1.5" />
-            		<controlpoint x="2.0" y="0.0" z="0.0" />
-            		<controlpoint x="0.0" y="0.0" z="1.0" />
-            		<controlpoint x="1.0" y="3.0" z="-0.5" />
-            		<controlpoint x="2.0" y="0.0" z="1.0" />
-            		<controlpoint x="0.0" y="0.0" z="2.0" />
-            		<controlpoint x="1.0" y="3.0" z="0.5" />
-            		<controlpoint x="2.0" y="0.0" z="2.0" />
+            		<controlpoint x="-1.0" y="0.0" z="1.0" />
+            		<controlpoint x="0.0" y="-2.5" z="1.0" />
+            		<controlpoint x="1.0" y="0.0" z="1.0" />
+            		<controlpoint x="-1.0" y="0.0" z="0.0" />
+            		<controlpoint x="0.0" y="-2.5" z="0.0" />
+            		<controlpoint x="1.0" y="0.0" z="0.0" />
+            		<controlpoint x="-1.0" y="0.0" z="-1.0" />
+            		<controlpoint x="0.0" y="-2.5" z="-1.0" />
+            		<controlpoint x="1.0" y="0.0" z="-1.0" />
     			</patch>
+    			<noderef id="Helicoptero"/>
+			</children>
+		</node>
+		
+		<node id="Helicoptero" displaylist="0">
+			<transforms>
+				<rotate axis="x" angle="90" />
+				<translate x="0" y="0" z="-2" />
+				<scale x="2" y="2" z="2"/>
+			</transforms>
+			
+			<appearanceref id="wwe" />
+				 
+			<children>
+    			<vehicle />
 			</children>
 		</node>
 			
 	</graph>
 </lsf>
+

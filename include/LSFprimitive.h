@@ -12,10 +12,25 @@
 #ifndef LSFPRIMITIVE_H_
 #define LSFPRIMITIVE_H_
 
-class LSFprimitive {
+enum PrimitiveType{ rectangle,triangle,cylinder,sphere,torus,plane, patch, vehicle};
+class LSFprimitive{
 public:
-	LSFprimitive();
-	void draw(Primitive primitive, LSFappearance *currentAppearance);
+	GLfloat *ctrlpoints;
+	GLfloat *nrmlcompon;
+	GLfloat *textpoints;
+	GLfloat *colorpoints;
+
+	LSFappearance *appearance;
+	PrimitiveType type;
+	map<string,float> attr;
+	GLenum compute;
+	LSFvertex normal;
+	vector<LSFvertex> uvCoords;
+
+	LSFprimitive(PrimitiveType type);
+	void createEvaluator(GLfloat *ctrlpoints, GLfloat *nrmlcompon, GLfloat *textpoints,
+			             GLfloat *colorpoints, int startU, int startV);
+	void draw();
 	virtual ~LSFprimitive();
 };
 

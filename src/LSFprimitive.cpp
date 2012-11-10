@@ -2,108 +2,159 @@
 #include "LSFprimitive.h"
 #include <iostream>
 using namespace std;
-LSFprimitive::LSFprimitive() {
 
+LSFprimitive::LSFprimitive(PrimitiveType type):type(type){
 }
 
-void LSFprimitive::draw(Primitive primitive, LSFappearance *currentAppearance){
-	switch(primitive.type){
+void LSFprimitive::createEvaluator(GLfloat *ctrlpoints, GLfloat *nrmlcompon = NULL, GLfloat *textpoints = NULL,
+                                   GLfloat *colorpoints = NULL, int startU = 0, int startV = 0){
+	float u,v;
+	u=1/(float)appearance->length_s;
+	v=1/(float)appearance->length_t;
+	GLenum mode;
+	int order, partsU, partsV;
+
+	if(type == plane){
+		mode = GL_FILL;
+		order = 1;
+		partsU = partsV = attr["parts"];
+	}
+	else{
+		mode = compute;
+		order = attr["order"];
+		partsU = attr["partsU"];
+		partsV = attr["partsV"];
+	}
+
+	if(nrmlcompon == NULL) glFrontFace(GL_CW);
+
+	glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, (order+1),
+			                  0.0, 1.0, 3*(order+1), (order+1), ctrlpoints);
+
+	if(textpoints == NULL){
+		GLfloat texturespoints[4][2] = {{0.0, 0.0},{u, 0.0},{0.0, v},{u, v}};
+		glMap2f(GL_MAP2_TEXTURE_COORD_2, 0, 1, 2, 2, 0, 1, 4, 2, &texturespoints[0][0]);
+	}
+	else
+		glMap2f(GL_MAP2_TEXTURE_COORD_2, 0, 1, 2, 2, 0, 1, 4, 2, textpoints);
+
+	if(nrmlcompon != NULL)
+		glMap2f(GL_MAP2_NORMAL, 0.0, 1.0, 3, (order+1),
+				                0.0, 1.0, 3*(order+1), (order+1), nrmlcompon);
+
+	if(colorpoints != NULL)
+		glMap2f(GL_MAP2_COLOR_4, 0.0, 1.0, 4, (order+1),
+						         0.0, 1.0, 4*(order+1), (order+1), colorpoints);
+	else
+		glColor3f(1.0,1.0,1.0);
+
+	glEnable(GL_MAP2_VERTEX_3);
+	glEnable(GL_MAP2_TEXTURE_COORD_2);
+
+	if(nrmlcompon == NULL)
+		glEnable(GL_AUTO_NORMAL);
+	else
+		glEnable(GL_MAP2_NORMAL);
+
+	if(colorpoints != NULL)
+		glEnable(GL_MAP2_COLOR_4);
+
+	glMapGrid2f(partsU, 0.0,1, partsV, 0.0,1);
+	glEvalMesh2(mode, startU, partsU, startV, partsV);
+
+	if(nrmlcompon == NULL) glFrontFace(GL_CCW);
+}
+
+void LSFprimitive::draw(){
+	switch(type){
 		case rectangle:{
 			glNormal3f(0,0,1);
 			glBegin(GL_QUADS);
-				float width=primitive.attr["x2"]-primitive.attr["x1"];
-				float height=primitive.attr["y2"]-primitive.attr["y1"];
+				float width= attr["x2"]-attr["x1"];
+				float height= attr["y2"]-attr["y1"];
 				float u,v;
-				u=width/(float)currentAppearance->length_s;
-				v=height/(float)currentAppearance->length_t;
-				glTexCoord2d(0.0,0.0); glVertex3d(primitive.attr["x1"],primitive.attr["y1"],0);
-				glTexCoord2d(u,0.0); glVertex3d(primitive.attr["x2"],primitive.attr["y1"],0);
-				glTexCoord2d(u,v); glVertex3d(primitive.attr["x2"],primitive.attr["y2"],0);
-				glTexCoord2d(0.0,v); glVertex3d(primitive.attr["x1"],primitive.attr["y2"],0);
+				u=width/(float)appearance->length_s;
+				v=height/(float)appearance->length_t;
+				glTexCoord2d(0.0,0.0); glVertex3d(attr["x1"],attr["y1"],0);
+				glTexCoord2d(u,0.0); glVertex3d(attr["x2"],attr["y1"],0);
+				glTexCoord2d(u,v); glVertex3d(attr["x2"],attr["y2"],0);
+				glTexCoord2d(0.0,v); glVertex3d(attr["x1"],attr["y2"],0);
 
 			glEnd();
 		}break;
 		case triangle:{
-			glNormal3f(primitive.normal.x,primitive.normal.y,primitive.normal.z);
+			glNormal3f(normal.x, normal.y, normal.z);
 			glBegin(GL_TRIANGLES);
 
 				// Compute the height and width of the triangle
 				LSFvertex p1,p2,p3;
-				p1=LSFvertex(primitive.attr["x1"],primitive.attr["y1"],primitive.attr["z1"]);
-				p2=LSFvertex(primitive.attr["x2"],primitive.attr["y2"],primitive.attr["z2"]);
-				p3=LSFvertex(primitive.attr["x3"],primitive.attr["y3"],primitive.attr["z3"]);
+				p1=LSFvertex(attr["x1"], attr["y1"], attr["z1"]);
+				p2=LSFvertex(attr["x2"], attr["y2"], attr["z2"]);
+				p3=LSFvertex(attr["x3"], attr["y3"], attr["z3"]);
 				float width=computeNormBetween(p1,p2);
-				float sFactor=(width/currentAppearance->length_s);
+				float sFactor=(width/appearance->length_s);
 				float height=computeTriangleHeight(p1,p2,p3);
-				float tFactor=(height/currentAppearance->length_t);
+				float tFactor=(height/appearance->length_t);
 				// -->
 				glTexCoord2d(0,0); // don't need s and t in the first coord
-				glVertex3d(primitive.attr["x1"],primitive.attr["y1"],primitive.attr["z1"]);
+				glVertex3d(attr["x1"], attr["y1"], attr["z1"]);
 
-				glTexCoord2d(primitive.uvCoords[1].x*sFactor,primitive.uvCoords[1].y*tFactor);
-				glVertex3d(primitive.attr["x2"],primitive.attr["y2"],primitive.attr["z2"]);
+				glTexCoord2d(uvCoords[1].x*sFactor, uvCoords[1].y*tFactor);
+				glVertex3d(attr["x2"], attr["y2"], attr["z2"]);
 
-				glTexCoord2d(primitive.uvCoords[2].x*sFactor,primitive.uvCoords[2].y*tFactor);
-				glVertex3d(primitive.attr["x3"],primitive.attr["y3"],primitive.attr["z3"]);
+				glTexCoord2d(uvCoords[2].x*sFactor, uvCoords[2].y*tFactor);
+				glVertex3d(attr["x3"], attr["y3"], attr["z3"]);
 			glEnd();
 		}break;
 		case cylinder:{
 			GLUquadric *a=gluNewQuadric();
 			gluQuadricNormals(a,GL_SMOOTH);
 			gluQuadricTexture(a,GL_TRUE);
-			gluCylinder(a, primitive.attr["base"], primitive.attr["top"], primitive.attr["height"], primitive.attr["slices"], primitive.attr["stacks"]);
+			gluCylinder(a, attr["base"], attr["top"], attr["height"], attr["slices"], attr["stacks"]);
 		} break;
 		case sphere:{
 			GLUquadric *a=gluNewQuadric();
 			gluQuadricNormals(a,GL_SMOOTH);
 			gluQuadricTexture(a,GL_TRUE);
-			gluSphere(a,primitive.attr["radius"],primitive.attr["slices"],primitive.attr["stacks"]);
+			gluSphere(a, attr["radius"], attr["slices"], attr["stacks"]);
 		}break;
 		case torus:{
 
-			glutSolidTorus(primitive.attr["inner"],primitive.attr["outer"],primitive.attr["slices"],primitive.attr["loops"]);
+			glutSolidTorus(attr["inner"], attr["outer"], attr["slices"], attr["loops"]);
 		} break;
 		case patch:{
-			float u,v;
-			u=1/(float)currentAppearance->length_s;
-			v=1/(float)currentAppearance->length_t;
-			GLfloat textpoints[4][2] = {{0.0, 0.0},{0.0, v},{u, 0.0},{u, u}};
-			glColor3f(1.0,1.0,1.0);
-			glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, (primitive.attr["order"]+1),
-					                  0.0, 1.0, 3*(primitive.attr["order"]+1), (primitive.attr["order"]+1), primitive.controlPoints);
-			glMap2f(GL_MAP2_TEXTURE_COORD_2, 0, 1, 2, 2, 0, 1, 4, 2, &textpoints[0][0]);
-			glEnable(GL_MAP2_VERTEX_3);
-			glEnable(GL_MAP2_TEXTURE_COORD_2);
-			glMapGrid2f(primitive.attr["partsU"], 0.0,1, primitive.attr["partsV"], 0.0,1);
-			glEvalMesh2(primitive.compute, 0, primitive.attr["partsU"], 0, primitive.attr["partsV"]);
+			createEvaluator(ctrlpoints);
 		}break;
 		case plane:{
-			GLfloat ctrlpoints[4][3] = {
-								{ -0.5, 0, 0.5},
-								{-0.5, 0, -0.5},
-								{ 0.5, 0, 0.5},
-								{ 0.5, 0, -0.5}};
-			float u,v;
-			u=1/(float)currentAppearance->length_s;
-			v=1/(float)currentAppearance->length_t;
-			GLfloat textpoints[4][2] = {	{ 0.0, 0.0},
-											{ 0.0, v},
-											{ u, 0.0},
-											{ u, v} };
+			GLfloat controlpoints[4][3] = {
+								{ -0.5, 0, 0.5},{ 0.5, 0, 0.5},
+								{-0.5, 0, -0.5},{ 0.5, 0, -0.5}};
 
-			//glEnable(GL_AUTO_NORMAL);
-			glNormal3f(0,1,0);
-			glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 2,  0.0, 1.0, 6, 2,  &ctrlpoints[0][0]);
-			glMap2f(GL_MAP2_TEXTURE_COORD_2,  0.0, 1.0, 2, 2,  0.0, 1.0, 4, 2,  &textpoints[0][0]);
+			createEvaluator(&controlpoints[0][0]);
+		}break;
+		case vehicle:{
+			GLfloat bodypoints[16][3] = {
+								{0.0, 0.0, 0.0},
+								{1.0, 1.0, 0.5},
+								{2.0, 1.0, 0.5},
+								{3.0, 0.0, 0.0},
 
-			// Interpolators
-			glEnable(GL_MAP2_VERTEX_3);
-			glMapGrid2f(primitive.attr["parts"], 0.0,1, primitive.attr["parts"], 0.0,1);
-			glEnable(GL_MAP2_TEXTURE_COORD_2);
+								{0.0, 0.0, -1.0},
+								{1.0, 1.0, -0.5},
+								{2.0, 1.0, -0.5},
+								{3.0, 0.0, -1.0},
 
-			glMapGrid2f(primitive.attr["parts"], 0.0,1, primitive.attr["parts"], 0.0,1); 
+								{0.0, 0.0, -2.0},
+								{1.0, 1.0, -1.5},
+								{2.0, 1.0, -1.5},
+								{3.0, 0.0, -2.0},
 
-			glEvalMesh2(GL_FILL, 0,primitive.attr["parts"], 0,primitive.attr["parts"]);
+								{0.0, 0.0, -3.0},
+								{1.0, 1.0, -2.5},
+								{2.0, 1.0, -2.5},
+								{3.0, 0.0, -3.0}};
+			attr["order"] = 3;
+			createEvaluator(&bodypoints[0][0]);
 		}break;
 	}
 }
