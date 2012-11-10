@@ -6,6 +6,7 @@
 #ifndef LSFSCENE_H
 #define LSFSCENE_H
 
+#include "LSFnode.h"
 #include "LSFParser.h"
 #include "CGFscene.h"
 #include "CGFappearance.h"

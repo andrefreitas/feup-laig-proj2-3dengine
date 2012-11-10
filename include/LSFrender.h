@@ -7,6 +7,7 @@
 #define LSFRENDER_H_
 #include <map>
 #include <string>
+#include "LSFnode.h"
 #include "LSFobjects.h"
 #include "CGFapplication.h"
 #include <stack>
