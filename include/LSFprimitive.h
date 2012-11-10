@@ -37,7 +37,7 @@ public:
 	virtual ~LSFprimitive();
 };
 
-class Terrain:LSFprimitive{
+class Terrain:public LSFprimitive{
 	string heightmap;
 	string texturemap;
 	string fragmentshader;

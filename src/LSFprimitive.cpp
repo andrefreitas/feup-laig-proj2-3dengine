@@ -257,12 +257,13 @@ Terrain::Terrain(string heightmap, string texturemap, string fragmentshader, str
 	this->texturemap=texturemap;
 	this->fragmentshader=fragmentshader;
 	this->vertexshader=vertexshader;
-	shader=new CGFshader(vertexshader.c_str(),fragmentshader.c_str());
+	//shader=new CGFshader(vertexshader.c_str(),fragmentshader.c_str());
 
 }
 
 void Terrain::draw(){
-	shader->bind();
+	//shader->bind();
+	cout << "A desenhar um terrno\n";
 	GLfloat controlpoints[4][3] = {
 							{ -0.5, 0, 0.5},{ 0.5, 0, 0.5},
 							{-0.5, 0, -0.5},{ 0.5, 0, -0.5}};

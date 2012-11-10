@@ -50,9 +50,9 @@ void LSFrender::render(map<string, LSFnode*> &nodes, string &rootNode,
 
 	// Process the primitives
 	for (int unsigned i = 0; i < nodes[rootNode]->childPrimitives.size(); i++) {
-		LSFprimitive primitive(nodes[rootNode]->childPrimitives[i]);
-		primitive.appearance = currentAppearance;
-		primitive.draw();
+		LSFprimitive *primitive=&nodes[rootNode]->childPrimitives[i];
+		primitive->appearance = currentAppearance;
+		primitive->draw();
 	}
 
 	// Process the noderefs
