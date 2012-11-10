@@ -57,8 +57,7 @@
 			<appearanceref id="inherit" />
 				 
 			<children>
-				<terrain heightmap="mapadealtura" texturemap="mapadetextura" fragmentshader="textureDemo2.frag" vertexshader="textureDemo2.vert" />
-				<vehicle />
+				<terrain heightmap="mapadealtura" texturemap="grass.jpg" fragmentshader="fragments.frag" vertexshader="vertexs.vert" />
 			</children>
 		</node>
 		

@@ -21,6 +21,7 @@ class Terrain{
 	string fragmentshader;
 	string vertexshader;
 	CGFshader* shader;
+	CGFappearance *texture;
 	public:
 	Terrain(string heightmap, string texturemap, string fragmentshader, string vertexshader);
 	void draw();

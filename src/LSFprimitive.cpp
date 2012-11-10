@@ -358,22 +358,28 @@ Terrain::Terrain(string heightmap, string texturemap, string fragmentshader, str
 	this->texturemap=texturemap;
 	this->fragmentshader=fragmentshader;
 	this->vertexshader=vertexshader;
+	cout << "Textura: " << texturemap << endl;
 	shader=new CGFshader(vertexshader.c_str(),fragmentshader.c_str());
-
+	texture=new CGFappearance(texturemap,1,1);
 }
 
 void Terrain::draw(){
+	texture->apply();
 	shader->bind();
 	GLfloat ctrlpoints[4][3] = {
-			{-0.5, 0, -0.5},
-			{ 0.5, 0, -0.5},
-			{ -0.5, 0, 0.5},
-			{ 0.5, 0, 0.5}};
+			{-5, 0, -5},
+			{ 5, 0, -5},
+			{ -5, 0, 5},
+			{ 5, 0, 5}};
+
 
 	glColor3f(1.0,1.0,1.0);
-	glNormal3f(0,1,0);
 	glMap2f(GL_MAP2_VERTEX_3, 0.0, 1.0, 3, 2,  0.0, 1.0, 6, 2,  &ctrlpoints[0][0]);
+	GLfloat texturespoints[4][2] = {{0.0, 0.0},{1, 0.0},{0.0, 1},{1, 1}};
+	glMap2f(GL_MAP2_TEXTURE_COORD_2, 0, 1, 2, 2, 0, 1, 4, 2, &texturespoints[0][0]);
 	glEnable(GL_MAP2_VERTEX_3);
+	glEnable(GL_MAP2_TEXTURE_COORD_2);
+	glNormal3f(0,1,0);
 	glMapGrid2f(20, 0.0,1, 20, 0.0,1);
 	glEvalMesh2(GL_FILL, 0,20, 0,20);
 	shader->unbind();
