@@ -7,9 +7,12 @@
  * keeping the code "simple and sincere" and easy to change.
  ****************************************************************************/
 
-#include "LSFobjects.h"
 #ifndef LSFPRIMITIVE_H_
 #define LSFPRIMITIVE_H_
+
+#include <iostream>
+#include "LSFobjects.h"
+#include "LSFvertex.h"
 
 enum PrimitiveType{ rectangle,triangle,cylinder,sphere,torus,plane, patch, vehicle};
 class LSFprimitive{

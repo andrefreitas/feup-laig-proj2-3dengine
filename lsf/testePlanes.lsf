@@ -63,7 +63,7 @@
 	</appearances> 
 	
 	<!-- graph information -->
-	<graph rootid="Helicoptero">
+	<graph rootid="Plano">
 
 		
 		<node id="Plano" displaylist="1">

@@ -1,6 +1,4 @@
 #include "LSFobjects.h"
-#include <iostream>
-#include "CGFapplication.h"
 
 
 void LSFcamera::updateProjectionMatrix(int width, int height){
@@ -55,8 +53,4 @@ void LSFcamera::applyView(){
 	if(view == "perspective")
 		gluLookAt(fromX, fromY, fromZ, toX, toY, toZ, 0, 1, 1);
 
-}
-LSFnode::LSFnode(){
-	animationRef="none";
-	isDisplayList=0;
 }

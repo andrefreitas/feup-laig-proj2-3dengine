@@ -3,15 +3,24 @@
  * Author:      - Paulo Araújo, paulojmaraujo@gmail.com
  * Copyright:   - 14/10/2012, LAIG, FEUP
  ****************************************************************************/
+
 #ifndef LSFSCENE_H
 #define LSFSCENE_H
 
-#include "LSFnode.h"
-#include "LSFParser.h"
-#include "CGFscene.h"
-#include "CGFappearance.h"
 #include <vector>
 #include <map>
+#include <math.h>
+#include <iostream>
+
+#include "CGFappearance.h"
+#include "CGFapplication.h"
+#include "CGFlight.h"
+#include "CGFscene.h"
+#include "CGFaxis.h"
+
+#include "LSFnode.h"
+#include "LSFParser.h"
+#include "LSFrender.h"
 
 /**
  * LSFscene defines the scene parsed from the LSF file.

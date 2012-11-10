@@ -3,16 +3,19 @@
  * Author:      - Paulo Araújo, paulojmaraujo@gmail.com
  * Copyright:   - 14/10/2012, LAIG, FEUP
  ****************************************************************************/
+
 #ifndef LSFINTERFACE_H_
 #define LSFINTERFACE_H_
 
+#include <iostream>
+
 #include "CGFinterface.h"
 #include "LSFscene.h"
+
 /**
  * LSFinterface - a class that implements a CGFinterface
  */
-class LSFinterface: public CGFinterface
-{
+class LSFinterface: public CGFinterface{
 	private:
 		LSFscene *scene;
 		struct globalsData *globals;

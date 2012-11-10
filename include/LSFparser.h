@@ -5,6 +5,7 @@
  ****************************************************************************/
 #ifndef LSFPARSER_H
 #define LSFPARSER_H
+
 #define DEBUGMODE 0
 
 #include "tinyxml.h"
@@ -15,6 +16,13 @@
 #include "CGFlight.h"
 #include "LSFanimation.h"
 #include <stack>
+#include <iostream>
+#include "LSFprimitive.h"
+#include <map>
+#include <CGFapplication.h>
+#include "LSFvertex.h"
+#include <iomanip>
+
 using namespace std;
 /**
  * globalsData is a struct that holds the globals configuration variables.

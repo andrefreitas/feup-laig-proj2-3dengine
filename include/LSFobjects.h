@@ -6,16 +6,16 @@
  * This header defines all the possible objects in the LSF scene. We are
  * keeping the code "simple and sincere" and easy to change.
  ****************************************************************************/
+
 #ifndef LSFNODE_H
 #define LSFNODE_H
 
 #include <map>
 #include <string>
-#include <CGFappearance.h>
+#include <iostream>
+#include "CGFappearance.h"
 #include "CGFlight.h"
 #include "CGFcamera.h"
-#include "LSFvertex.h"
-#include "LSFnode.h"
 
 /**
  * Transform a class for holding all existing transformations

@@ -1,5 +1,4 @@
 #include "LSFinterface.h"
-#include <iostream>
 
 LSFinterface::LSFinterface(LSFscene *scene)
 {

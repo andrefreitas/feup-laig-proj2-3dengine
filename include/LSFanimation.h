@@ -1,7 +1,18 @@
+/****************************************************************************
+ * Author:      - André Freitas, p.andrefreitas@gmail.com
+ * Author:      - Paulo Araújo, paulojmaraujo@gmail.com
+ * Copyright:   - 14/10/2012, LAIG, FEUP
+ ****************************************************************************/
+
 #ifndef LSFANIMATION_H_
 #define LSFANIMATION_H_
-#include "LSFvertex.h"
+
 #include <vector>
+#include <math.h>
+#include <iostream>
+
+#include "LSFvertex.h"
+
 class LSFanimation{
 	protected:
 		vector<LSFvertex> controlPoints; /* the animation control points */

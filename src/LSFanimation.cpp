@@ -1,6 +1,5 @@
 #include "LSFanimation.h"
-#include <math.h>
-#include <iostream>
+
 using namespace std;
 #define DEBUG_ANIMATION 0
 LSFanimation::LSFanimation(vector<LSFvertex> controlPoints, double totalTime) {
@@ -66,7 +65,7 @@ LSFvertex LSFanimation::getDisplacementAt(double elapsedTime){
 
 	// Compute the sum of displacement vectors
 	LSFvertex displacement(0,0,0);
-	for(int unsigned i=0; i<path; i++){
+	for(unsigned int i=0; i<path; i++){
 
 		displacement.x+=pathDisplacement[i].x;
 		displacement.y+=pathDisplacement[i].y;

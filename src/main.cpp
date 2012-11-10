@@ -2,8 +2,8 @@
 #include <exception>
 #include "CGFapplication.h"
 #include "LSFscene.h"
-#include "LSFinterface.h"
 #include "LSFobjects.h"
+#include "LSFinterface.h"
 
 using std::cout;
 using std::exception;

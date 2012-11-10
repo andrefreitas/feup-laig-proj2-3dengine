@@ -5,13 +5,20 @@
  ****************************************************************************/
 #ifndef LSFRENDER_H_
 #define LSFRENDER_H_
+
 #include <map>
 #include <string>
+#include <stack>
+#include <iostream>
+
+#include "CGFapplication.h"
+
 #include "LSFnode.h"
 #include "LSFobjects.h"
-#include "CGFapplication.h"
-#include <stack>
 #include "LSFanimation.h"
+#include "LSFvertex.h"
+#include "LSFprimitive.h"
+
 /**
  * LSFrender is a class that receives all the scene objects and render it in OPENGL
  */
