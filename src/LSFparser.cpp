@@ -1119,7 +1119,7 @@ void LSFparser::buildDisplayLists(map<string,LSFnode*> &nodes,string &rootNode,m
 		glPopMatrix();
 
 		// If is display list
-		if(nodes[rootNode]->isDisplayList & enabledDisplayList){
+		if(nodes[rootNode]->isDisplayList && enabledDisplayList){
 			nodes[rootNode]->displayList=glGenLists(1);
 			glNewList(nodes[rootNode]->displayList, GL_COMPILE);
 			cout << "Criou a displaylist de: " << rootNode << endl;

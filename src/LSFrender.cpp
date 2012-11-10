@@ -32,6 +32,8 @@ void LSFrender::render(map<string, LSFnode*> &nodes, string &rootNode,
 	if (nodes[rootNode]->isDisplayList) {
 		glCallList(nodes[rootNode]->displayList);
 		//cout << "\n É Display List!" << rootNode << endl;
+		if(haveAnimation) glPopMatrix();
+
 		return;
 	}
 	//cout << "\n Não era Display List!" << endl;

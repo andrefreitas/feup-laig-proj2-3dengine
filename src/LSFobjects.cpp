@@ -58,4 +58,5 @@ void LSFcamera::applyView(){
 }
 LSFnode::LSFnode(){
 	animationRef="none";
+	isDisplayList=0;
 }
