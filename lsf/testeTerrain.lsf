@@ -58,6 +58,7 @@
 				 
 			<children>
 				<terrain heightmap="mapadealtura" texturemap="mapadetextura" fragmentshader="fragmentos" vertexshader="vertices" />
+				<vehicle />
 			</children>
 		</node>
 		
