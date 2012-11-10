@@ -261,7 +261,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 
 		// Animation ID
 		TiXmlElement *animation=node->FirstChildElement("animation");
-		pnode->animationRef=string(animation->Attribute("ref"));
+		if(animation!=0) pnode->animationRef=string(animation->Attribute("ref"));
 
 		// (1) Transforms
 		TiXmlElement *transforms;
@@ -1176,7 +1176,10 @@ void LSFparser::buildDisplayLists(map<string,LSFnode*> &nodes,string &rootNode,m
 		}
 }
 void LSFparser::getAnimations(map<string,LSFanimation*> &animations){
-	if(animationElement==NULL) return; // nothing to do here
+	if(animationElement==0) {
+		cout << "Nada de Animacoes" << endl;
+		return; // nothing to do here
+	}
 
 	TiXmlElement *node = animationElement->FirstChildElement();
 	const char *animationID;

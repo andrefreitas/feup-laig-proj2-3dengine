@@ -1515,7 +1515,7 @@
 			</children>
 		</node>
 		
-		<node id="Plano" displaylist="1">
+		<node id="Plano" displaylist="0">
 			<transforms>
 				<translate x="2" y="2" z="0" />
 				<rotate axis="x" angle="90" />

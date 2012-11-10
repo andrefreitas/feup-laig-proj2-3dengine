@@ -81,6 +81,7 @@ void LSFscene::init()
 	initCameras();
 
 	setUpdatePeriod(10);
+
 }
 
 map<string, LSFlight*> * LSFscene::getLights(){
