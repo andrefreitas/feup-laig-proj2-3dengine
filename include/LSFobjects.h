@@ -15,6 +15,7 @@
 #include "CGFlight.h"
 #include "CGFcamera.h"
 #include "LSFvertex.h"
+#include "LSFnode.h"
 
 /**
  * Transform a class for holding all existing transformations

@@ -8,7 +8,6 @@
  ****************************************************************************/
 
 #include "LSFobjects.h"
-
 #ifndef LSFPRIMITIVE_H_
 #define LSFPRIMITIVE_H_
 

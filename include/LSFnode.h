@@ -5,7 +5,7 @@
  ****************************************************************************/
 
 #include "LSFprimitive.h"
-
+#include "LSFobjects.h"
 #ifndef LSFNODE_H_
 #define LSFNODE_H_
 
@@ -14,9 +14,7 @@
  */
 class LSFnode{
 	public:
-	LSFnode(){
-		animationRef="none";
-	}
+	LSFnode();
 	char *id;
 	float transformMatrix[16]; // When the node is parsed, the transformations are put in a stack
 	string appearance; // Reference to the map of appearances
