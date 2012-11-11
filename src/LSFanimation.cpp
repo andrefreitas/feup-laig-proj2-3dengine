@@ -43,6 +43,26 @@ LSFanimation::LSFanimation(vector<LSFvertex> controlPoints, double totalTime) {
 					cout << i << " - v ( " << velocity.x << " , " << velocity.y
 							<< " , " << velocity.z << " )\n";
 	}
+
+	// Compute the rotation in each path
+	pathRotation.push_back(LSFvertex(0,0,0));
+	for (int unsigned i = 1; i < (controlPoints.size() - 1); i++) {
+		LSFvertex rotation=angleBetween(pathDisplacement[i-1], pathDisplacement[i]);
+		rotation.x+=pathRotation[i-1].x;
+		rotation.y+=pathRotation[i-1].y;
+		rotation.z+=pathRotation[i-1].z;
+
+		// IF - or +
+		LSFvertex cross=crossProduct(pathDisplacement[i-1],pathDisplacement[i]);
+		if(cross.x<0)
+			rotation.x=0-rotation.x;
+		if(cross.y<0)
+			rotation.y=0-rotation.y;
+		if(cross.z<0)
+			rotation.z=0-rotation.z;
+		pathRotation.push_back(rotation);
+
+	}
 }
 int LSFanimation::getPathAt(double &elapsedTime){
 	double timeUntilNow=0;
@@ -80,4 +100,8 @@ LSFvertex LSFanimation::getDisplacementAt(double elapsedTime){
 
 	return displacement;
 
+}
+LSFvertex LSFanimation::getRotationAt(double elapsedTime){
+	int path=getPathAt(elapsedTime);
+	return pathRotation[path];
 }

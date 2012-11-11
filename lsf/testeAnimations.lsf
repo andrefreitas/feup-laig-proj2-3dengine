@@ -16,8 +16,8 @@
 	<cameras initial="userCam" >
 		<!-- user camera -->
 		<perspective id="userCam" near="0.1" far="100.0" angle="60.0">
-			<from x="1" y="4.0" z="8.0" />
-			<to x="1" y="0.0" z="0.0" />
+			<from x="6" y="7.0" z="30.0" />
+			<to x="6" y="0.0" z="0.0" />
 		</perspective>
 		
 	</cameras>
@@ -50,7 +50,7 @@
 			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
 			<specular r="0.3" g="0.3" b="0.3" a="1" />
 			<shininess value="0.3" />
-			<texture file="wweMagazine.jpg" length_s="0.5" length_t="1" />
+			<texture file="wweMagazine.jpg" length_s="10" length_t="10" />
 		</appearance>
 
 		<appearance id="vermelho">
@@ -66,8 +66,8 @@
     	<animation id="teste" span="10" type="linear">
     		<controlpoint xx="0.0" yy="0" zz="0" />
     		<controlpoint xx="5" yy="0" zz="0" />
-    		<controlpoint xx="5" yy="4" zz="0" />
-    		<controlpoint xx="5" yy="4" zz="6" />
+    		<controlpoint xx="8" yy="0" zz="6" />
+    		<controlpoint xx="16" yy="0" zz="6" />
     	</animation>
     	<animation id="t3" span="4" type="linear">
     		<controlpoint xx="0" yy="0" zz="0" />
@@ -76,38 +76,22 @@
 	</animations>
 
 	<!-- graph information -->
-	<graph rootid="Helicoptero">
+	<graph rootid="Plano">
 
 		
 		<node id="Plano" displaylist="0">
 			<transforms>
-				<translate x="2" y="2" z="0" />
-				<rotate axis="x" angle="90" />
-				<scale x="4" y="1" z="4"/>
 			</transforms>
 			
-			<animation ref="t3" />
+			<animation ref="teste" />
 			<appearanceref id="wwe" />
 				 
 			<children>
-				<plane parts="5" />
+				<rectangle x1="-5" y1="0" x2="5" y2="10" />
 			</children>
 		</node>
 		
-		<node id="Helicoptero" displaylist="0">
-			<transforms>
-				<translate x="2" y="2" z="0" />
-				<rotate axis="x" angle="90" />
-				<scale x="4" y="1" z="4"/>
-			</transforms>
-			
-			<animation ref="t3" />
-			<appearanceref id="wwe" />
-				 
-			<children>
-    			<vehicle />
-			</children>
-		</node>
+	
 			
 	</graph>
 </lsf>

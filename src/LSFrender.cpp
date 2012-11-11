@@ -48,6 +48,16 @@ void LSFrender::render(map<string, LSFnode*> &nodes, string &rootNode,
 	glMaterialfv(GL_EMISSION, GL_FRONT_AND_BACK, currentAppearance->emissive);
 	currentAppearance->appearance->apply();
 
+	// Process the rotations
+	if(haveAnimation){
+		glPushMatrix();
+		LSFanimation* animationp=animations[nodes[rootNode]->animationRef];
+		LSFvertex rotation=animationp->getRotationAt(timeSeconds);
+		glRotated(rotation.x,1,0,0);
+		glRotated(rotation.y,0,1,0);
+		glRotated(rotation.z,0,0,1);
+
+	}
 	// Process the primitives
 	for (int unsigned i = 0; i < nodes[rootNode]->childPrimitives.size(); i++) {
 		LSFprimitive *primitive=&nodes[rootNode]->childPrimitives[i];
@@ -60,10 +70,17 @@ void LSFrender::render(map<string, LSFnode*> &nodes, string &rootNode,
 		else
 			primitive->draw();
 	}
+	// End rotation
+	if(haveAnimation){
+		glPopMatrix();
+	}
+
+
 
 	// Process the noderefs
 	for (int unsigned i = 0; i < nodes[rootNode]->childNoderefs.size(); i++)
 		render(nodes, nodes[rootNode]->childNoderefs[i], appearances,appearancesStack,animations,timeSeconds);
+
 
 	appearancesStack.pop();
 	glPopMatrix();

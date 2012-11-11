@@ -20,6 +20,7 @@ class LSFanimation{
 		double totalPathLen; /* the length of the complete path */
 		vector<LSFvertex> pathVelocity; /* the unit velocity vectors correspondent to each section v=x/t */
 		vector<LSFvertex> pathDisplacement;
+		vector<LSFvertex> pathRotation;
 		vector<double> pathTime;
 		vector<double> pathDistance;
 	public:
