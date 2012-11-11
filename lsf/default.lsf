@@ -119,9 +119,22 @@
 
 	<animations>
     	<animation id="takeoff" span="20" type="linear">
-    		<controlpoint xx="0.0" yy="0" zz="0" />
+    		<controlpoint xx="0" yy="0" zz="0" />
     		<controlpoint xx="-200" yy="0" zz="0" />
-    		<controlpoint xx="-300" yy="50" zz="0" />
+    		<controlpoint xx="-250" yy="30" zz="0" />
+    		<controlpoint xx="-300" yy="60" zz="-20" />
+    		<controlpoint xx="-320" yy="70" zz="-80" />
+    		<controlpoint xx="-300" yy="70" zz="-100" />
+    		<controlpoint xx="0" yy="70" zz="-100" />
+    		<controlpoint xx="50" yy="70" zz="-80" />
+    		<controlpoint xx="80" yy="60" zz="-20" />
+    		<controlpoint xx="100" yy="30" zz="0" />
+    		<controlpoint xx="0" yy="0" zz="0" />
+    		<controlpoint xx="1" yy="0" zz="0" />
+    		<controlpoint xx="2" yy="0" zz="0" />
+    		<controlpoint xx="3" yy="0" zz="0" />
+    		<controlpoint xx="4" yy="0" zz="0" />
+    		<controlpoint xx="5" yy="0" zz="0" />
     	</animation>
 	</animations>
 
