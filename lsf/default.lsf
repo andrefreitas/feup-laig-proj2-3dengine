@@ -468,6 +468,26 @@
 			</transforms>
 			<appearanceref id="inherit" />
 			<children>
+				<noderef id="GrupoArvores1" />
+				<noderef id="GrupoArvores2" />
+			</children>
+		</node>
+
+		<node id="GrupoArvores1">
+			<transforms>
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="GrupoArvores" />
+			</children>
+		</node>
+
+		<node id="GrupoArvores2">
+			<transforms>
+				<translate x="400" y="0" z="0" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
 				<noderef id="GrupoArvores" />
 			</children>
 		</node>
@@ -507,7 +527,7 @@
 		</node>
 
 
-		<node id="GrupoArvores">
+		<node id="GrupoArvores" displaylist="1">
 			<transforms>
 				<translate x="-100" y="0" z="-60" />
 			</transforms>
