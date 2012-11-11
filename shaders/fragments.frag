@@ -8,6 +8,5 @@ void main()
 	// notice the coordinate conversion to flip the image horizontally and vertically
 	vec4 filter=texture2D(secondImage, vec2(1.0,1.0)-gl_TexCoord[0].st);
 
-	
 	gl_FragColor = color; 
 }

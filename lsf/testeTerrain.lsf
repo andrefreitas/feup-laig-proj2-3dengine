@@ -58,6 +58,7 @@
 				 
 			<children>
 				<terrain heightmap="terrainBump.jpg" texturemap="grass.jpg" fragmentshader="fragments.frag" vertexshader="vertexs.vert" />
+				<vehicle/>
 			</children>
 		</node>
 		

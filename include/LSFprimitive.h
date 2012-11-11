@@ -13,16 +13,15 @@
 #include <iostream>
 #include "LSFobjects.h"
 #include "LSFvertex.h"
-#include <CGFshader.h>
+#include "LSFshader.h"
 
 class Terrain{
 	string heightmap;
 	string texturemap;
 	string fragmentshader;
 	string vertexshader;
-	CGFshader* shader;
-	CGFappearance *texture;
-	CGFtexture *bumptexture;
+	LSFshader *shader;
+	CGFshader *teste;
 	public:
 	Terrain(string heightmap, string texturemap, string fragmentshader, string vertexshader);
 	void draw();
