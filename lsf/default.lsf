@@ -78,6 +78,33 @@
 			<texture file="sky.jpg" length_s="1" length_t="1" />
 		</appearance>
 
+		<appearance id="concrete">
+			<emissive r="0.4" g="0.4" b="0.4" a="1" />
+			<ambient r="1.0" g="1.0" b="1.0" a="1" />
+			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
+			<specular r="0.3" g="0.3" b="0.3" a="1" />
+			<shininess value="0.3" />
+			<texture file="concrete.jpg" length_s="10" length_t="10" />
+		</appearance>
+
+		<appearance id="janelas">
+			<emissive r="0.4" g="0.4" b="0.4" a="1" />
+			<ambient r="1.0" g="1.0" b="1.0" a="1" />
+			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
+			<specular r="0.3" g="0.3" b="0.3" a="1" />
+			<shininess value="0.3" />
+			<texture file="janelas.jpg" length_s="10" length_t="10" />
+		</appearance>
+
+		<appearance id="terra">
+			<emissive r="0.4" g="0.4" b="0.4" a="1" />
+			<ambient r="1.0" g="1.0" b="1.0" a="1" />
+			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
+			<specular r="0.3" g="0.3" b="0.3" a="1" />
+			<shininess value="0.3" />
+			<texture file="dirt.gif" length_s="10" length_t="10" />
+		</appearance>
+
 		
 
 	</appearances> 
@@ -99,18 +126,79 @@
 			</transforms>
 			<appearanceref id="inherit" />
 			<children>
-				<noderef id="Terrenos" />
+				<noderef id="Acampamento" />
 				<noderef id="TerrenoEnorme" />
 				<noderef id="Pista" />
 				<noderef id="Concorde" /> 
-				<noderef id="TendaCampanha" />
 				<noderef id="SkyBox" />
+				<noderef id="Concrete" />
+				<noderef id="Torre" />
 			</children>
 		</node>
 
+
+
+
+
+		<node id="Acampamento">
+			<transforms>
+				<translate x="60" y="0" z="-10" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Terrenos" />
+				<noderef id="Tendas" />
+			</children>
+		</node>
+
+		<node id="Tendas">
+			<transforms>
+				<translate x="2" y="0" z="0" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Tenda1" />
+				<noderef id="Tenda2" />
+				<noderef id="Tenda3" />
+			</children>
+		</node>
+
+		<node id="Tenda1">
+			<transforms>
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="TendaCampanha" />
+			</children>
+		</node>
+
+		<node id="Tenda2">
+			<transforms>
+				<translate x="8" y="0" z="0" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="TendaCampanha" />
+			</children>
+		</node>
+
+
+		<node id="Tenda3">
+			<transforms>
+				<translate x="17" y="0" z="0" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="TendaCampanha" />
+			</children>
+		</node>
+
+
+
+
 		<node id="Terrenos">
 			<transforms>
-				<translate x="5" y="0" z="5" />
+				
 			</transforms>
 			<appearanceref id="inherit" />
 			<children>
@@ -128,7 +216,7 @@
 			</transforms>
 			<appearanceref id="inherit" />
 			<children>
-				<noderef id="Relva" />
+				<noderef id="Terra" />
 			</children>
 		</node>
 
@@ -139,7 +227,7 @@
 			</transforms>
 			<appearanceref id="inherit" />
 			<children>
-				<noderef id="Relva" />
+				<noderef id="Terra" />
 			</children>
 		</node>
 
@@ -149,37 +237,37 @@
 			</transforms>
 			<appearanceref id="inherit" />
 			<children>
-				<noderef id="Relva" />
+				<noderef id="Terra" />
 			</children>
 		</node>
 
 		<node id="Terreno14">
 			<transforms>
-				<translate x="30" y="0" z="0" />
+				<translate x="20" y="0" z="-10" />
 			</transforms>
 			<appearanceref id="inherit" />
 			<children>
-				<noderef id="Relva" />
+				<noderef id="Terra" />
 			</children>
 		</node>
 
 		<node id="Terreno15">
 			<transforms>
-				<translate x="40" y="0" z="0" />
+				<translate x="10" y="0" z="-10" />
 			</transforms>
 			<appearanceref id="inherit" />
 			<children>
-				<noderef id="Relva" />
+				<noderef id="Terra" />
 			</children>
 		</node>
 
 		<node id="Terreno16">
 			<transforms>
-				<translate x="50" y="0" z="0" />
+				<translate x="0" y="0" z="-10" />
 			</transforms>
 			<appearanceref id="inherit" />
 			<children>
-				<noderef id="Relva" />
+				<noderef id="Terra" />
 			</children>
 		</node>
 
@@ -189,6 +277,15 @@
 			<appearanceref id="inherit" />
 			<children>
 				<terrain heightmap="terrainBump.jpg" texturemap="grass.jpg" fragmentshader="fragments.frag" vertexshader="vertexs.vert" />
+			</children>
+		</node>
+
+		<node id="Terra">
+			<transforms>
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<terrain heightmap="terrainBump.jpg" texturemap="dirt.jpg" fragmentshader="fragments.frag" vertexshader="vertexs.vert" />
 			</children>
 		</node>
 
@@ -228,7 +325,7 @@
 
 		<node id="TendaCampanha">
 			<transforms>
-				<translate x="3" y="-0.1" z="-5" />
+				<translate x="0" y="-0.1" z="-5" />
 				<scale x="3" y="3" z="3" />
 			</transforms>
 			<appearanceref id="militar" />
@@ -267,6 +364,72 @@
 			</children>
 		</node>
 
+		<node id="Concrete">
+			<transforms>
+				 <translate x="0" y="0" z="60" />
+				 <rotate axis="x" angle="-90" />
+			</transforms>
+			<appearanceref id="concrete" />
+			<children>
+				<rectangle x1="0" y1="0" x2="200" y2="30" />
+			</children>
+		</node>
+
+		<node id="Torre">
+			<transforms>
+				<translate x="10" y="0" z="40" />
+			</transforms>
+			<appearanceref id="concrete" />
+			<children>
+				<noderef id="pilar" />
+				<noderef id="TorreTopo" />
+				<noderef id="TorrePiso" />
+				<noderef id="TorreCobertura" />
+			</children>
+		</node>
+
+		<node id="pilar">
+			<transforms>
+				<rotate axis="x" angle="-90" />
+			</transforms>
+			<appearanceref id="concrete" />
+			<children>
+				<cylinder base="2" top="2" height="15" slices="20" stacks="2" /> 
+			</children>
+		</node>
+
+		<node id="TorreTopo">
+			<transforms>
+				<translate x="0" y="15" z="0" />
+				<rotate axis="x" angle="-90" />
+			</transforms>
+			<appearanceref id="concrete" />
+			<children>
+				<cylinder base="2" top="4" height="3" slices="20" stacks="2" /> 
+			</children>
+		</node>
+
+		<node id="TorrePiso">
+			<transforms>
+				<translate x="0" y="18" z="0" />
+				<rotate axis="x" angle="-90" />
+			</transforms>
+			<appearanceref id="janelas" />
+			<children>
+				<cylinder base="4" top="4" height="4" slices="20" stacks="2" /> 
+			</children>
+		</node>
+
+		<node id="TorreCobertura">
+			<transforms>
+				<translate x="0" y="22" z="0" />
+				<rotate axis="x" angle="-90" />
+			</transforms>
+			<appearanceref id="concrete" />
+			<children>
+				<rectangle x1="-5" y1="-5" x2="5" y2="5" />
+			</children>
+		</node>
 		
 	</graph>
 </lsf>
