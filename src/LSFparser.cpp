@@ -559,7 +559,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 				LSFprimitive prim(plane);
 				int parts;
 
-				queryResult |= child->QueryIntAttribute("parts", &parts);
+				queryResult = child->QueryIntAttribute("parts", &parts);
 				if (queryResult != TIXML_SUCCESS)
 					exit_("There is an error in plane parts value at node "
 									+ (string) pnode->id + ".");
@@ -575,7 +575,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 				int order, partsU, partsV;
 				string compute;
 
-				queryResult |= child->QueryIntAttribute("order", &order);
+				queryResult = child->QueryIntAttribute("order", &order);
 				queryResult |= child->QueryIntAttribute("partsU", &partsU);
 				queryResult |= child->QueryIntAttribute("partsV", &partsV);
 				if (queryResult != TIXML_SUCCESS)
@@ -610,7 +610,7 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 				int i=0;
 				while (controlPoints) {
 					existingControlpoints++;
-					queryResult |= controlPoints->QueryFloatAttribute("x", &cp[i++]);
+					queryResult = controlPoints->QueryFloatAttribute("x", &cp[i++]);
 					queryResult |= controlPoints->QueryFloatAttribute("y", &cp[i++]);
 					queryResult |= controlPoints->QueryFloatAttribute("z", &cp[i++]);
 					if (queryResult != TIXML_SUCCESS)
@@ -1198,16 +1198,22 @@ void LSFparser::getAnimations(map<string,LSFanimation*> &animations){
 	// For every animation
 	while(node){
 		animationID=node->Attribute("id");
-		node->QueryFloatAttribute("span",&animationSpan);
+		queryResult = node->QueryFloatAttribute("span",&animationSpan);
+		if (queryResult != TIXML_SUCCESS)
+			exit_("There is an error in span value at animation "
+								+ (string) node->Attribute("id") + ".");
 		cout << "-> ID " << animationID << " Span " << animationSpan << endl;
 
 		// For every control point
 		TiXmlElement *controlpoint=node->FirstChildElement();
 		vector<LSFvertex> cps;
 		while(controlpoint){
-			controlpoint->QueryDoubleAttribute("xx",&point.x);
-			controlpoint->QueryDoubleAttribute("yy",&point.y);
-			controlpoint->QueryDoubleAttribute("zz",&point.z);
+			queryResult = controlpoint->QueryDoubleAttribute("xx",&point.x);
+			queryResult |= controlpoint->QueryDoubleAttribute("yy",&point.y);
+			queryResult |= controlpoint->QueryDoubleAttribute("zz",&point.z);
+			if (queryResult != TIXML_SUCCESS)
+				exit_("There is an error in controlpoints values at animation "
+									+ (string) node->Attribute("id") + ".");
 			cout << "--> Control Point "; point.print(); cout << endl;
 			cps.push_back(point);
 			// -->
