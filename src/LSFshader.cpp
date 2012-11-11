@@ -5,6 +5,14 @@ LSFshader::LSFshader(string texturemap, string heightmap, string vertexshader, s
 
 	init(vertexshader.c_str(),fragmentshader.c_str());
 	CGFshader::bind();
+
+	// Initialize parameter in memory
+	normScale=2.0;
+
+	// Store Id for the uniform "normScale", new value will be stored on bind()
+	scaleLoc = glGetUniformLocation(id(), "normScale");
+
+
 	this->texturemap=new CGFtexture(texturemap);
 	this->heightmap=new CGFtexture(heightmap);
 
@@ -16,10 +24,16 @@ LSFshader::LSFshader(string texturemap, string heightmap, string vertexshader, s
  void LSFshader::bind(void){
 	CGFshader::bind();
 
-	//glActiveTexture(GL_TEXTURE0);
+	// update uniforms
+	glUniform1f(scaleLoc, normScale);
+
+
+	glActiveTexture(GL_TEXTURE0);
 	texturemap->apply();
 
-	//glActiveTexture(GL_TEXTURE1);
-	//heightmap->apply();
+	glActiveTexture(GL_TEXTURE1);
+	heightmap->apply();
+
+	glActiveTexture(GL_TEXTURE0);
 
 }

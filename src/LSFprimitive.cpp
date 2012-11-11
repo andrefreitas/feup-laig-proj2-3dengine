@@ -394,16 +394,16 @@ Terrain::Terrain(string heightmap, string texturemap, string fragmentshader, str
 	this->vertexshader=vertexshader;
 
 	shader=new LSFshader(texturemap, heightmap,vertexshader,fragmentshader);
-	teste=new CGFshader(vertexshader.c_str(),fragmentshader.c_str());
 }
 
 void Terrain::draw(){
 	shader->bind();
+	glFrontFace(GL_CW);
 	GLfloat ctrlpoints[4][3] = {
-			{-5, 0, -5},
-			{ 5, 0, -5},
-			{ -5, 0, 5},
-			{ 5, 0, 5}};
+				{ -5, 0, 5},
+				{ 5, 0, 5},
+				{-5, 0, -5},
+				{ 5, 0, -5}};
 
 
 	glColor3f(1.0,1.0,1.0);
@@ -415,5 +415,7 @@ void Terrain::draw(){
 	glNormal3f(0,1,0);
 	glMapGrid2f(20, 0.0,1, 20, 0.0,1);
 	glEvalMesh2(GL_FILL, 0,20, 0,20);
+
+	glFrontFace(GL_CCW);
 	shader->unbind();
 }

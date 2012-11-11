@@ -10,6 +10,8 @@ protected:
 	CGFtexture *heightmap;
 	int baseImageLoc;
 	int secImageLoc;
+	float normScale;
+	int scaleLoc;
 public:
 	LSFshader(string texturemap, string heightmap, string vertexshader, string fragmentshader);
 
