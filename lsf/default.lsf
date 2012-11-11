@@ -96,16 +96,23 @@
 			<texture file="janelas.jpg" length_s="10" length_t="10" />
 		</appearance>
 
-		<appearance id="terra">
+		<appearance id="wood">
 			<emissive r="0.4" g="0.4" b="0.4" a="1" />
 			<ambient r="1.0" g="1.0" b="1.0" a="1" />
 			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
 			<specular r="0.3" g="0.3" b="0.3" a="1" />
 			<shininess value="0.3" />
-			<texture file="dirt.gif" length_s="10" length_t="10" />
+			<texture file="wood.jpg" length_s="10" length_t="10" />
 		</appearance>
 
-		
+		<appearance id="arbusto">
+			<emissive r="0.4" g="0.4" b="0.4" a="1" />
+			<ambient r="1.0" g="1.0" b="1.0" a="1" />
+			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
+			<specular r="0.3" g="0.3" b="0.3" a="1" />
+			<shininess value="0.3" />
+			<texture file="bush.jpg" length_s="10" length_t="10" />
+		</appearance>
 
 	</appearances> 
 
@@ -133,6 +140,7 @@
 				<noderef id="SkyBox" />
 				<noderef id="Concrete" />
 				<noderef id="Torre" />
+				<noderef id="Arvores"/>
 			</children>
 		</node>
 
@@ -430,6 +438,175 @@
 				<rectangle x1="-5" y1="-5" x2="5" y2="5" />
 			</children>
 		</node>
+
+		<node id="Arvores">
+			<transforms>
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="GrupoArvores" />
+			</children>
+		</node>
+
+		<node id="Arvore">
+			<transforms>
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="TroncoArvore" />
+				<noderef id="CopaArvore" />
+			</children>
+		</node>
+
+
+		<node id="TroncoArvore">
+			<transforms>
+				<rotate axis="x" angle="-90" />
+			</transforms>
+			<appearanceref id="wood" />
+			<children>
+								
+				<cylinder base="0.1" top="0.2" height="6" slices="20" stacks="2" /> 
+			</children>
+		</node>
+
+		<node id="CopaArvore">
+			<transforms>
+				<translate x="0" y="8" z="0" />
+				<scale x="0.2" y="2" z="0.8" />
+			</transforms>
+			<appearanceref id="arbusto" />
+			<children>
+								
+				<sphere radius="2" slices="20" stacks="4" />
+			</children>
+		</node>
+
+
+		<node id="GrupoArvores">
+			<transforms>
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Arvore1" />
+				<noderef id="Arvore2" />
+				<noderef id="Arvore3" />
+				<noderef id="Arvore4" />
+				<noderef id="Arvore5" />
+				<noderef id="Arvore6" />
+				<noderef id="Arvore7" />
+				<noderef id="Arvore8" />
+				<noderef id="Arvore9" />
+				<noderef id="Arvore10" />
+			</children>
+		</node>
 		
+		<node id="Arvore1">
+			<transforms>
+
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Arvore" />
+			</children>
+		</node>
+
+		<node id="Arvore2">
+			<transforms>
+				<translate x="3" y="0" z="1" />
+				<rotate axis="y" angle="-6" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Arvore" />
+			</children>
+		</node>
+
+		<node id="Arvore3">
+			<transforms>
+				<translate x="6" y="0" z="-2" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Arvore" />
+			</children>
+		</node>
+
+		<node id="Arvore4">
+			<transforms>
+				<translate x="9" y="0" z="-1.6" />
+				<rotate axis="y" angle="6" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Arvore" />
+			</children>
+		</node>
+
+		<node id="Arvore5">
+			<transforms>
+				<translate x="12" y="0" z="-0.1" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Arvore" />
+			</children>
+		</node>
+
+		<node id="Arvore6">
+			<transforms>
+				<translate x="15" y="0" z="0.23" />
+				<rotate axis="y" angle="4" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Arvore" />
+			</children>
+		</node>
+
+		<node id="Arvore7">
+			<transforms>
+				<translate x="18" y="0" z="-0.4" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Arvore" />
+			</children>
+		</node>
+
+		<node id="Arvore8">
+			<transforms>
+				<translate x="21" y="0" z="0.4" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Arvore" />
+			</children>
+		</node>
+
+		<node id="Arvore9">
+			<transforms>
+				<translate x="24" y="0" z="2.24" />
+				<rotate axis="y" angle="-2" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Arvore" />
+			</children>
+		</node>
+
+		<node id="Arvore10">
+			<transforms>
+				<translate x="27" y="0" z="0.2" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Arvore" />
+			</children>
+		</node>
+
+
+
+
 	</graph>
 </lsf>
