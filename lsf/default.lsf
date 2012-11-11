@@ -113,6 +113,15 @@
 			<shininess value="0.3" />
 			<texture file="bush.jpg" length_s="10" length_t="10" />
 		</appearance>
+		
+		<appearance id="militarBox">
+			<emissive r="0.4" g="0.4" b="0.4" a="1" />
+			<ambient r="1.0" g="1.0" b="1.0" a="1" />
+			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
+			<specular r="0.3" g="0.3" b="0.3" a="1" />
+			<shininess value="0.3" />
+			<texture file="camuflado.jpg" length_s="1" length_t="1" />
+		</appearance>
 
 	</appearances> 
 
@@ -153,6 +162,7 @@
 				<noderef id="Concrete" />
 				<noderef id="Torre" />
 				<noderef id="Arvores"/>
+				<noderef id="Box" />
 			</children>
 		</node>
 
@@ -212,8 +222,106 @@
 				<noderef id="TendaCampanha" />
 			</children>
 		</node>
+		
+		<node id="Box">
+			<transforms>
+				<translate x="50" y="0" z="-10" />
+				<scale x="0.5" y="0.5" z="0.5"/>
+			</transforms>
+			<appearanceref id="militarBox" />
+			<children>
+				<noderef id="side1" />
+				<noderef id="side2" />
+				<noderef id="side3" />
+				<noderef id="side4" />
+				<noderef id="side5" />
+				<noderef id="side6" />
+			</children>
+		</node>
 
-
+		<node id="side1">
+			<transforms>
+				<translate x="2" y="4" z="-2" />
+				<scale x="4" y="1" z="4"/>
+			</transforms>
+			
+			<appearanceref id="inherit" />
+				 
+			<children>
+    			<plane parts="5" />
+			</children>
+		</node>
+		
+		<node id="side2">
+			<transforms>
+				<rotate axis="x" angle="90" />
+				<translate x="2" y="0" z="-2" />
+				<scale x="4" y="1" z="4"/>
+			</transforms>
+			
+			<appearanceref id="inherit" />
+				 
+			<children>
+    			<plane parts="5" />
+			</children>
+		</node>
+		
+		<node id="side3">
+			<transforms>
+				<rotate axis="x" angle="180" />
+				<translate x="2" y="0" z="2" />
+				<scale x="4" y="1" z="4"/>
+			</transforms>
+			
+			<appearanceref id="inherit" />
+				 
+			<children>
+    			<plane parts="5" />
+			</children>
+		</node>
+		
+		<node id="side4">
+			<transforms>
+				<rotate axis="x" angle="270" />
+				<translate x="2" y="4" z="2" />
+				<scale x="4" y="1" z="4"/>
+			</transforms>
+			
+			<appearanceref id="inherit" />
+				 
+			<children>
+    			<plane parts="5" />
+			</children>
+		</node>
+		
+				<node id="side5">
+			<transforms>
+				<rotate axis="y" angle="90" />
+				<rotate axis="x" angle="-90"/>
+				<translate x="2" y="0" z="2" />
+				<scale x="4" y="1" z="4"/>
+			</transforms>
+			
+			<appearanceref id="inherit" />
+				 
+			<children>
+    			<plane parts="5" />
+			</children>
+		</node>
+		
+		<node id="side6">
+			<transforms>
+				<rotate axis="z" angle="-90" />
+				<translate x="-2" y="4" z="-2" />
+				<scale x="4" y="1" z="4"/>
+			</transforms>
+			
+			<appearanceref id="inherit" />
+				 
+			<children>
+    			<plane parts="5" />
+			</children>
+		</node>
 
 
 		<node id="Terrenos">
