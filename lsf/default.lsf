@@ -59,7 +59,18 @@
 			<shininess value="0.3" />
 			<texture file="grass.jpg" length_s="20" length_t="20" />
 		</appearance>
+
+		<appearance id="militar">
+			<emissive r="0.4" g="0.4" b="0.4" a="1" />
+			<ambient r="0.1" g="0.1" b="0.1" a="1" />
+			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
+			<specular r="0.3" g="0.3" b="0.3" a="1" />
+			<shininess value="0.3" />
+			<texture file="militar.jpg" length_s="1" length_t="1" />
+		</appearance>
+
 	</appearances> 
+
 
 	<animations>
     	<animation id="takeoff" span="20" type="linear">
@@ -80,7 +91,8 @@
 				<noderef id="Terrenos" />
 				<noderef id="TerrenoEnorme" />
 				<noderef id="Pista" />
-				<noderef id="Concorde" />
+				<noderef id="Concorde" /> 
+				<noderef id="TendaCampanha" />
 			</children>
 		</node>
 
@@ -199,6 +211,26 @@
 			<appearanceref id="relva" />
 			<children>
 				<rectangle x1="-100" y1="0" x2="400" y2="200" />
+			</children>
+		</node>
+
+		<node id="TendaCampanha">
+			<transforms>
+				
+			</transforms>
+			<appearanceref id="militar" />
+			<children>
+				 <patch order="2" partsU="10" partsV="10" compute="fill">
+           		<controlpoint x="-1.0" y="0.0" z="1.0" />
+            		<controlpoint x="0.0" y="1" z="1.0" />
+            		<controlpoint x="1.0" y="0.0" z="1.0" />
+            		<controlpoint x="-1.0" y="1.0" z="0.0" />
+            		<controlpoint x="0.0" y="3" z="0.0" />
+            		<controlpoint x="1.0" y="1.0" z="0.0" />
+            		<controlpoint x="-1.0" y="0.0" z="-1.0" />
+            		<controlpoint x="0.0" y="1" z="-1.0" />
+            		<controlpoint x="1.0" y="0.0" z="-1.0" />
+    			</patch>
 			</children>
 		</node>
 		
