@@ -361,10 +361,11 @@ Terrain::Terrain(string heightmap, string texturemap, string fragmentshader, str
 	cout << "Textura: " << texturemap << endl;
 	shader=new CGFshader(vertexshader.c_str(),fragmentshader.c_str());
 	texture=new CGFappearance(texturemap,1,1);
+	bumptexture=new CGFtexture(heightmap);
 }
 
 void Terrain::draw(){
-	texture->apply();
+	bumptexture->apply();
 	shader->bind();
 	GLfloat ctrlpoints[4][3] = {
 			{-5, 0, -5},
