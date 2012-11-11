@@ -64,12 +64,16 @@
 			</transforms>
 			<appearanceref id="inherit" />
 			<children>
-				<noderef id="Terreno1" />
-				<noderef id="Terreno2" />
+				<noderef id="Terreno11" />
+				<noderef id="Terreno12" />
+				<noderef id="Terreno13" />
+				<noderef id="Terreno14" />
+				<noderef id="Terreno15" />
+				<noderef id="Terreno16" />
 			</children>
 		</node>
 
-		<node id="Terreno1" >
+		<node id="Terreno11" >
 			<transforms>
 			</transforms>
 			<appearanceref id="inherit" />
@@ -79,9 +83,49 @@
 		</node>
 
 
-		<node id="Terreno2">
+		<node id="Terreno12">
 			<transforms>
 				<translate x="10" y="0" z="0" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Relva" />
+			</children>
+		</node>
+
+			<node id="Terreno13">
+			<transforms>
+				<translate x="20" y="0" z="0" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Relva" />
+			</children>
+		</node>
+
+		<node id="Terreno14">
+			<transforms>
+				<translate x="30" y="0" z="0" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Relva" />
+			</children>
+		</node>
+
+		<node id="Terreno15">
+			<transforms>
+				<translate x="40" y="0" z="0" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<children>
+				<noderef id="Relva" />
+			</children>
+		</node>
+
+		<node id="Terreno16">
+			<transforms>
+				<translate x="50" y="0" z="0" />
 			</transforms>
 			<appearanceref id="inherit" />
 			<children>
