@@ -118,19 +118,21 @@
 
 
 	<animations>
-    	<animation id="takeoff" span="50" type="linear">
+    	<animation id="takeoff" span="30" type="linear">
     		<controlpoint xx="0" yy="0" zz="0" />
     		<controlpoint xx="-200" yy="0" zz="0" />
-    		<controlpoint xx="-250" yy="20" zz="0" />
-    		<controlpoint xx="-280" yy="50" zz="-5" />
-    		<controlpoint xx="-300" yy="70" zz="-15" />
-    		<controlpoint xx="-310" yy="80" zz="-30" />
-    		<controlpoint xx="-315" yy="85" zz="-50" />
-    		<controlpoint xx="-310" yy="80" zz="-70" />
-    		<controlpoint xx="-300" yy="70" zz="-85" />
-    		<controlpoint xx="-280" yy="70" zz="-95" />
-    		<controlpoint xx="-250" yy="70" zz="-100" />
-    		<controlpoint xx="-200" yy="70" zz="-100" />
+    		<controlpoint xx="-250" yy="30" zz="0" />
+    		<controlpoint xx="-300" yy="60" zz="-20" />
+    		<controlpoint xx="-400" yy="70" zz="-50" />
+    		<controlpoint xx="-500" yy="100" zz="-50" />
+    	</animation>
+    	<animation id="landing" span="30" type="linear">
+    		<controlpoint xx="0" yy="100" zz="0" />
+    		<controlpoint xx="-100" yy="90" zz="0" />
+    		<controlpoint xx="-200" yy="60" zz="0" />
+    		<controlpoint xx="-400" yy="40" zz="0" />
+    		<controlpoint xx="-450" yy="10" zz="0" />
+    		<controlpoint xx="-500" yy="0" zz="0" />
     	</animation>
 	</animations>
 
@@ -146,6 +148,7 @@
 				<noderef id="TerrenoEnorme" />
 				<noderef id="Pista" />
 				<noderef id="Concorde" /> 
+				<noderef id="Concorde2" />
 				<noderef id="SkyBox" />
 				<noderef id="Concrete" />
 				<noderef id="Torre" />
@@ -308,10 +311,22 @@
 
 		<node id="Concorde">
 			<transforms>
-				<translate x="280" y="2.1" z="17" />
+				<translate x="250" y="2.1" z="17" />
 			</transforms>
 			<appearanceref id="inherit" />
 			<animationref id="takeoff" />
+			
+			<children>
+				<vehicle/>
+			</children>
+		</node>
+		
+		<node id="Concorde2">
+			<transforms>
+				<translate x="750" y="102.1" z="17" />
+			</transforms>
+			<appearanceref id="inherit" />
+			<animationref id="landing" />
 			
 			<children>
 				<vehicle/>
