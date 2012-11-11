@@ -31,7 +31,7 @@
 		<!-- scene lights -->
 		<lights>
 			<light id="sun" enabled="true">
-				<location x="10.0" y="300" z="10.0" />
+				<location x="10.0" y="90" z="10.0" />
 				<ambient r="0.6" g="0.6" b="0.6" a="1.0" />
 				<diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
 				<specular r="1.0" g="1.0" b="1.0" a="1.0" />
@@ -59,7 +59,29 @@
 			<shininess value="0.3" />
 			<texture file="grass.jpg" length_s="20" length_t="20" />
 		</appearance>
+
+		<appearance id="militar">
+			<emissive r="0.4" g="0.4" b="0.4" a="1" />
+			<ambient r="0.1" g="0.1" b="0.1" a="1" />
+			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
+			<specular r="0.3" g="0.3" b="0.3" a="1" />
+			<shininess value="0.3" />
+			<texture file="militar.jpg" length_s="1" length_t="1" />
+		</appearance>
+
+		<appearance id="sky">
+			<emissive r="0.4" g="0.4" b="0.4" a="1" />
+			<ambient r="0.1" g="0.1" b="0.1" a="1" />
+			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
+			<specular r="0.3" g="0.3" b="0.3" a="1" />
+			<shininess value="0.3" />
+			<texture file="sky.jpg" length_s="1" length_t="1" />
+		</appearance>
+
+		
+
 	</appearances> 
+
 
 	<animations>
     	<animation id="takeoff" span="20" type="linear">
@@ -80,7 +102,9 @@
 				<noderef id="Terrenos" />
 				<noderef id="TerrenoEnorme" />
 				<noderef id="Pista" />
-				<noderef id="Concorde" />
+				<noderef id="Concorde" /> 
+				<noderef id="TendaCampanha" />
+				<noderef id="SkyBox" />
 			</children>
 		</node>
 
@@ -201,6 +225,48 @@
 				<rectangle x1="-100" y1="0" x2="400" y2="200" />
 			</children>
 		</node>
+
+		<node id="TendaCampanha">
+			<transforms>
+				<translate x="3" y="-0.1" z="-5" />
+				<scale x="3" y="3" z="3" />
+			</transforms>
+			<appearanceref id="militar" />
+			<children>
+				 <patch order="2" partsU="10" partsV="10" compute="fill">
+           		<controlpoint x="-1.0" y="0.0" z="1.0" />
+            		<controlpoint x="0.0" y="1" z="1.0" />
+            		<controlpoint x="1.0" y="0.0" z="1.0" />
+            		<controlpoint x="-1.0" y="1.0" z="0.0" />
+            		<controlpoint x="0.0" y="3" z="0.0" />
+            		<controlpoint x="1.0" y="1.0" z="0.0" />
+            		<controlpoint x="-1.0" y="0.0" z="-1.0" />
+            		<controlpoint x="0.0" y="1" z="-1.0" />
+            		<controlpoint x="1.0" y="0.0" z="-1.0" />
+    			</patch>
+			</children>
+		</node>
+
+		<node id="SkyBox">
+			<transforms>
+				<rotate axis="x" angle="180" />
+			</transforms>
+			<appearanceref id="sky" />
+			<children>
+				<patch order="2" partsU="30" partsV="30" compute="fill">
+           			<controlpoint x="-100.0" y="40" z="100" />
+            		<controlpoint x="0.0" y="40" z="100" />
+            		<controlpoint x="500" y="40" z="100" />
+            		<controlpoint x="-100" y="40" z="0.0" />
+            		<controlpoint x="0.0" y="-600" z="0.0" />
+            		<controlpoint x="500" y="40" z="0.0" />
+            		<controlpoint x="-100" y="40" z="-150" />
+            		<controlpoint x="0.0" y="40" z="-150" />
+            		<controlpoint x="500" y="40" z="-150" />
+    			</patch>
+			</children>
+		</node>
+
 		
 	</graph>
 </lsf>
