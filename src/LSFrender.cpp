@@ -53,8 +53,10 @@ void LSFrender::render(map<string, LSFnode*> &nodes, string &rootNode,
 		LSFprimitive *primitive=&nodes[rootNode]->childPrimitives[i];
 		primitive->appearance = currentAppearance;
 
-		if(primitive->type==terrain)
+		if(primitive->type==terrain){
 			primitive->terrain->draw();
+			currentAppearance->appearance->apply(); // necessary, otherwise will affect childs
+		}
 		else
 			primitive->draw();
 	}
