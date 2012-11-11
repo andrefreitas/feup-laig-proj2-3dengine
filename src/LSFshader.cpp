@@ -20,6 +20,6 @@ LSFshader::LSFshader(string texturemap, string heightmap, string vertexshader, s
 	texturemap->apply();
 
 	//glActiveTexture(GL_TEXTURE1);
-	heightmap->apply();
+	//heightmap->apply();
 
 }
