@@ -249,20 +249,31 @@
 
 		<node id="SkyBox">
 			<transforms>
-				<rotate axis="x" angle="180" />
+				<!-- rotate axis="x" angle="180" / -->
+				<translate x="0" y="-100" z="40" />
 			</transforms>
 			<appearanceref id="sky" />
 			<children>
-				<patch order="2" partsU="30" partsV="30" compute="fill">
-           			<controlpoint x="-100.0" y="40" z="100" />
-            		<controlpoint x="0.0" y="40" z="100" />
-            		<controlpoint x="500" y="40" z="100" />
-            		<controlpoint x="-100" y="40" z="0.0" />
-            		<controlpoint x="0.0" y="-600" z="0.0" />
-            		<controlpoint x="500" y="40" z="0.0" />
-            		<controlpoint x="-100" y="40" z="-150" />
-            		<controlpoint x="0.0" y="40" z="-150" />
-            		<controlpoint x="500" y="40" z="-150" />
+				<patch order="3" partsU="30" partsV="30" compute="fill">
+           			<controlpoint x="250.0" y="-10" z="-20" />
+            		<controlpoint x="-500" y="-10" z="-60" />
+            		<controlpoint x="700" y="-10" z="-60" />
+            		<controlpoint x="250" y="-10" z="-20" />
+            		
+            		<controlpoint x="-100" y="-10" z="-240" />
+            		<controlpoint x="-500" y="500" z="-400" />
+            		<controlpoint x="700" y="500" z="-400" />
+            		<controlpoint x="400" y="-10" z="-240" />
+            		
+            		<controlpoint x="-100" y="-10" z="200" />
+            		<controlpoint x="-500" y="500" z="320" />
+            		<controlpoint x="700" y="500" z="320" />
+            		<controlpoint x="400" y="-10" z="200" />
+            		
+            		<controlpoint x="250" y="-10" z="-20" />
+            		<controlpoint x="-500" y="-10" z="40" />
+            		<controlpoint x="700" y="-10" z="40" />
+            		<controlpoint x="250" y="-10" z="-20" />
     			</patch>
 			</children>
 		</node>
