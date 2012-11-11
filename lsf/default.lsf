@@ -375,7 +375,7 @@
 			</children>
 		</node>
 
-		<node id="Torre">
+		<node id="Torre" displaylist="1">
 			<transforms>
 				<translate x="10" y="0" z="40" />
 			</transforms>
