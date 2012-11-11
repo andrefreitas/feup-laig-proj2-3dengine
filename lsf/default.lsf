@@ -69,50 +69,16 @@
 			<texture file="militar.jpg" length_s="1" length_t="1" />
 		</appearance>
 
-		<appearance id="skyfront">
+		<appearance id="sky">
 			<emissive r="0.4" g="0.4" b="0.4" a="1" />
 			<ambient r="0.1" g="0.1" b="0.1" a="1" />
 			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
 			<specular r="0.3" g="0.3" b="0.3" a="1" />
 			<shininess value="0.3" />
-			<texture file="skyboxfront.jpg" length_s="200" length_t="100" />
+			<texture file="skyboxfront.jpg" length_s="1" length_t="1" />
 		</appearance>
 
-		<appearance id="skyback">
-			<emissive r="0.4" g="0.4" b="0.4" a="1" />
-			<ambient r="0.1" g="0.1" b="0.1" a="1" />
-			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
-			<specular r="0.3" g="0.3" b="0.3" a="1" />
-			<shininess value="0.3" />
-			<texture file="skyboxback.jpg" length_s="200" length_t="100" />
-		</appearance>
-
-		<appearance id="skyleft">
-			<emissive r="0.4" g="0.4" b="0.4" a="1" />
-			<ambient r="0.1" g="0.1" b="0.1" a="1" />
-			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
-			<specular r="0.3" g="0.3" b="0.3" a="1" />
-			<shininess value="0.3" />
-			<texture file="skyboxleft.jpg" length_s="200" length_t="100" />
-		</appearance>
-
-		<appearance id="skyright">
-			<emissive r="0.4" g="0.4" b="0.4" a="1" />
-			<ambient r="0.1" g="0.1" b="0.1" a="1" />
-			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
-			<specular r="0.3" g="0.3" b="0.3" a="1" />
-			<shininess value="0.3" />
-			<texture file="skyboxright.jpg" length_s="200" length_t="100" />
-		</appearance>
-
-		<appearance id="skytop">
-			<emissive r="0.4" g="0.4" b="0.4" a="1" />
-			<ambient r="0.1" g="0.1" b="0.1" a="1" />
-			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
-			<specular r="0.3" g="0.3" b="0.3" a="1" />
-			<shininess value="0.3" />
-			<texture file="skyboxtop.jpg" length_s="200" length_t="100" />
-		</appearance>
+		
 
 	</appearances> 
 
@@ -283,70 +249,24 @@
 
 		<node id="SkyBox">
 			<transforms>
+				<rotate axis="x" angle="180" />
 			</transforms>
-			<appearanceref id="inherit" />
+			<appearanceref id="sky" />
 			<children>
-				<noderef id="skyfront" />
-				<noderef id="skyback" />
-				<noderef id="skyleft" />
-				<noderef id="skyright" />
-				<noderef id="skytop" />
+				<patch order="2" partsU="30" partsV="30" compute="fill">
+           			<controlpoint x="-100.0" y="40" z="100" />
+            		<controlpoint x="0.0" y="40" z="100" />
+            		<controlpoint x="500" y="40" z="100" />
+            		<controlpoint x="-100" y="40" z="0.0" />
+            		<controlpoint x="0.0" y="-600" z="0.0" />
+            		<controlpoint x="500" y="40" z="0.0" />
+            		<controlpoint x="-100" y="40" z="-150" />
+            		<controlpoint x="0.0" y="40" z="-150" />
+            		<controlpoint x="500" y="40" z="-150" />
+    			</patch>
 			</children>
 		</node>
 
-		<node id="skyfront">
-			<transforms>
-				<translate x="-100" y="0" z="120" />
-				<rotate axis="y" angle="90" />
-			</transforms>
-			<appearanceref id="skyfront" />
-			<children>
-				<rectangle x1="0" y1="0" x2="200" y2="100" />
-			</children>
-		</node>
-
-		<node id="skyback">
-			<transforms>
-				<translate x="400" y="0" z="-80" />
-				<rotate axis="y" angle="-90" />
-			</transforms>
-			<appearanceref id="skyback" />
-			<children>
-				<rectangle x1="0" y1="0" x2="200" y2="100" />
-			</children>
-		</node>
-
-		<node id="skyleft">
-			<transforms>
-				<translate x="400" y="0" z="120" />
-				<rotate axis="y" angle="180" />
-			</transforms>
-			<appearanceref id="skyleft" />
-			<children>
-				<rectangle x1="0" y1="0" x2="500" y2="100" />
-			</children>
-		</node>
-
-		<node id="skyright">
-			<transforms>
-				<translate x="-100" y="0" z="-80" />
-			</transforms>
-			<appearanceref id="skyright" />
-			<children>
-				<rectangle x1="0" y1="0" x2="500" y2="100" />
-			</children>
-		</node>
-
-		<node id="skytop">
-			<transforms>
-				 <translate x="0" y="100" z="-80" />
-				 <rotate axis="x" angle="90" />
-			</transforms>
-			<appearanceref id="skytop" />
-			<children>
-				<rectangle x1="-100" y1="0" x2="400" y2="200" />
-			</children>
-		</node>
 		
 	</graph>
 </lsf>
