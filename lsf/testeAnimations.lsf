@@ -83,7 +83,7 @@
 			<transforms>
 			</transforms>
 			
-			<animation ref="teste" />
+			<animationref id="teste" />
 			<appearanceref id="wwe" />
 				 
 			<children>

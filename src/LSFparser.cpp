@@ -247,8 +247,8 @@ void LSFparser::getNodes(map<string, LSFnode*> &nodes, string &rootNode) {
 			cout << "\tNode: " << node->Attribute("id") << endl;
 
 		// Animation ID
-		TiXmlElement *animation=node->FirstChildElement("animation");
-		if(animation!=0) pnode->animationRef=string(animation->Attribute("ref"));
+		TiXmlElement *animation=node->FirstChildElement("animationref");
+		if(animation!=0) pnode->animationRef=string(animation->Attribute("id"));
 
 		// (1) Transforms
 		TiXmlElement *transforms;
