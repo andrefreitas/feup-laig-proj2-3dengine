@@ -84,7 +84,7 @@
 			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
 			<specular r="0.3" g="0.3" b="0.3" a="1" />
 			<shininess value="0.3" />
-			<texture file="skyboxback.jpg" length_s="1" length_t="1" />
+			<texture file="skyboxback.jpg" length_s="200" length_t="100" />
 		</appearance>
 
 		<appearance id="skyleft">
@@ -93,7 +93,7 @@
 			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
 			<specular r="0.3" g="0.3" b="0.3" a="1" />
 			<shininess value="0.3" />
-			<texture file="skyboxleft.jpg" length_s="1" length_t="1" />
+			<texture file="skyboxleft.jpg" length_s="200" length_t="100" />
 		</appearance>
 
 		<appearance id="skyright">
@@ -102,7 +102,7 @@
 			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
 			<specular r="0.3" g="0.3" b="0.3" a="1" />
 			<shininess value="0.3" />
-			<texture file="skyboxright.jpg" length_s="1" length_t="1" />
+			<texture file="skyboxright.jpg" length_s="200" length_t="100" />
 		</appearance>
 
 		<appearance id="skytop">
@@ -111,7 +111,7 @@
 			<diffuse r="0.6" g="0.6" b="0.6" a="1" />
 			<specular r="0.3" g="0.3" b="0.3" a="1" />
 			<shininess value="0.3" />
-			<texture file="skyboxtop.jpg" length_s="1" length_t="1" />
+			<texture file="skyboxtop.jpg" length_s="200" length_t="100" />
 		</appearance>
 
 	</appearances> 
@@ -310,7 +310,7 @@
 				<translate x="400" y="0" z="-80" />
 				<rotate axis="y" angle="-90" />
 			</transforms>
-			<appearanceref id="inherit" />
+			<appearanceref id="skyback" />
 			<children>
 				<rectangle x1="0" y1="0" x2="200" y2="100" />
 			</children>
@@ -321,7 +321,7 @@
 				<translate x="400" y="0" z="120" />
 				<rotate axis="y" angle="180" />
 			</transforms>
-			<appearanceref id="inherit" />
+			<appearanceref id="skyleft" />
 			<children>
 				<rectangle x1="0" y1="0" x2="500" y2="100" />
 			</children>
@@ -331,7 +331,7 @@
 			<transforms>
 				<translate x="-100" y="0" z="-80" />
 			</transforms>
-			<appearanceref id="inherit" />
+			<appearanceref id="skyright" />
 			<children>
 				<rectangle x1="0" y1="0" x2="500" y2="100" />
 			</children>
@@ -342,7 +342,7 @@
 				 <translate x="0" y="100" z="-80" />
 				 <rotate axis="x" angle="90" />
 			</transforms>
-			<appearanceref id="inherit" />
+			<appearanceref id="skytop" />
 			<children>
 				<rectangle x1="-100" y1="0" x2="400" y2="200" />
 			</children>
