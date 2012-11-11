@@ -24,7 +24,7 @@
 	
 	
 	<!-- general lighting -->
-	<lighting doublesided="true" local="true" enabled="true" >
+	<lighting doublesided="true" local="true" enabled="false" >
 		<!-- scene ambient light -->
 		<ambient r="0.03" g="0.03" b="0.03" a="1.0" />
 		
