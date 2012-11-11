@@ -82,7 +82,7 @@
 		
 		<node id="Concord" displaylist="0">
 			<transforms>
-				<translate x="-10" y="0" z="-2" />
+				<translate x="0" y="0" z="0" />
 				<scale x="1" y="1" z="1"/>
 			</transforms>
 			

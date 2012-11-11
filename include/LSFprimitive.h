@@ -44,6 +44,9 @@ public:
 	LSFprimitive(PrimitiveType type);
 	void createEvaluator(GLfloat *ctrlpoints, GLfloat *nrmlcompon, GLfloat *textpoints,
 			             GLfloat *colorpoints, int startU, int startV);
+	void drawBooster(int way, GLfloat *texturespoints);
+	void drawBracket(float x, float y, float z, GLfloat *texturespoints);
+	void drawWheel(float x, float y, float z, GLfloat *texturespoints);
 	virtual void draw();
 	virtual ~LSFprimitive();
 };
