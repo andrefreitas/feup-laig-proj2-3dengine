@@ -88,4 +88,6 @@ class LSFappearance{
 		CGFappearance* appearance;
 		bool haveTexture;
 };
+
+
 #endif
