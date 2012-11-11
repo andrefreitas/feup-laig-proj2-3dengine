@@ -13,11 +13,16 @@
 	
 	
 	<!-- scene cameras -->
-	<cameras initial="userCam" >
+	<cameras initial="runway" >
 		<!-- user camera -->
-		<perspective id="userCam" near="0.1" far="100.0" angle="60.0">
-			<from x="1" y="4.0" z="8.0" />
-			<to x="1" y="0.0" z="0.0" />
+		<perspective id="runway" near="0.1" far="1000.0" angle="90.0">
+			<from x="300" y="5" z="15" />
+			<to x="1" y="0.0" z="3.0" />
+		</perspective>
+
+		<perspective id="camping" near="0.1" far="1000.0" angle="90.0">
+			<from x="50" y="15.0" z="-10" />
+			<to x="60" y="0.0" z="-10" />
 		</perspective>
 		
 	</cameras>
@@ -582,7 +587,7 @@
 			</children>
 		</node>
 
-		<node id="Arvores">
+		<node id="Arvores" displaylist="1">
 			<transforms>
 			</transforms>
 			<appearanceref id="inherit" />
@@ -646,7 +651,7 @@
 		</node>
 
 
-		<node id="GrupoArvores" displaylist="1">
+		<node id="GrupoArvores">
 			<transforms>
 				<translate x="-100" y="0" z="-60" />
 			</transforms>
